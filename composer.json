@@ -1,0 +1,14 @@
+{
+    "name": "components/api",
+    "description": "Antares Api Component",
+    "authors": [
+        {
+            "name": "Marcin Kozak",
+            "email": "contact@antaresproject.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "dingo/api": "~1.0"
+    }
+}

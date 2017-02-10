@@ -1,0 +1,14 @@
+{
+    "name": "api",
+    "full_name": "API",
+    "description": "Antares API Provider",
+    "author": "Marcin Kozak",
+    "url": "http://antaresproject.io",
+    "version": "0.9.0",
+    "provides": [
+        "Antares\\Api\\ApiServiceProvider"
+    ],
+    "options": {
+        "auth_drivers": {}
+    }
+}

@@ -1,0 +1,59 @@
+<?php
+
+
+/**
+ * Part of the Antares Project package.
+ *
+ * NOTICE OF LICENSE
+ *
+ * Licensed under the 3-clause BSD License.
+ *
+ * This source file is subject to the 3-clause BSD License that is
+ * bundled with this package in the LICENSE file.
+ *
+ * @package    Api
+ * @version    0.9.0
+ * @author     Antares Team
+ * @license    BSD License (3-clause)
+ * @copyright  (c) 2017, Antares Project
+ * @link       http://antaresproject.io
+ */
+
+
+
+
+namespace Antares\Api\Http\Breadcrumb;
+
+use Antares\Breadcrumb\Navigation;
+
+class ConfigurationBreadcrumb extends Navigation
+{
+
+    /**
+     *
+     * @var string
+     */
+    protected static $name = 'api';
+
+    /**
+     * Register a breadcrumb on an admin index page.
+     */
+    public function onIndex()
+    {
+        $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
+            $breadcrumbs->push('General Configuration');
+        });
+
+        $this->shareOnView(self::$name);
+    }
+
+    public function onUserConfig()
+    {
+        $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
+            $breadcrumbs->push('Api');
+        });
+
+        $this->shareOnView(self::$name);
+    }
+
+}

@@ -1,0 +1,17 @@
+<div class="form-block">
+    <div class="col-16 mb2 nopadding">
+        <label for="token" class="form-block__name"></label>    
+    </div>
+    <div class="col-16 nopadding">
+        <div class="input-field ">
+            <p>{{ description|raw }}</p>
+        </div>
+    </div>
+    {% if documentation %}
+        <div class="col-16 nopadding">
+            <div class="input-field__desc">
+                {{ documentation|raw }}
+            </div>
+        </div>
+    {% endif %}
+</div>
