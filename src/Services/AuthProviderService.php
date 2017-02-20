@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Services;
 
@@ -68,15 +64,17 @@ class AuthProviderService
      * @param Cache $cache
      * @param array $authDrivers
      */
-    public function __construct(Container $container, Cache $cache, array $authDrivers)
+    public function __construct(Container $container, Cache $cache, array $authDrivers = null)
     {
         $this->container   = $container;
         $this->cache       = $cache;
         $this->authDrivers = new Collection();
 
-        foreach ($authDrivers as $driverClassName) {
-            $driver = $this->container->make($driverClassName);
-            $this->authDrivers->put($driver->getName(), $driver);
+        if (!empty($authDrivers)) {
+            foreach ($authDrivers as $driverClassName) {
+                $driver = $this->container->make($driverClassName);
+                $this->authDrivers->put($driver->getName(), $driver);
+            }
         }
     }
 
