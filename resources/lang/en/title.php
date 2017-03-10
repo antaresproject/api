@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,13 +17,9 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
-
 return [
     'configuration'        => 'API',
     'auth_drivers'         => 'Authentication Drivers',
     'enabled_auth_drivers' => 'Enabled API Authentication Drivers',
-    'api_logs'             => 'Api Logs'
+    'api_log'              => 'Api Log'
 ];
