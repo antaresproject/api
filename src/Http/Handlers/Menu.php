@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Http\Handlers;
 
@@ -73,20 +69,7 @@ class Menu extends MenuHandler
      */
     public function authorize(Guard $auth)
     {
-        $service = app(AuthProviderService::class);
-        $areas   = array_keys(config('areas.areas'));
-        $drivers = app(AuthProviderService::class)->getAvailableDrivers();
-        $enabled = false;
-        foreach ($drivers as $driver => $instance) {
-            foreach ($areas as $name) {
-                if ($service->isDriverEnabledForArea($driver, $name)) {
-                    $enabled = true;
-                    break;
-                }
-            }
-        }
-
-        return $enabled && app('antares.acl')->make('antares/api')->can('configuration');
+        return app('antares.acl')->make('antares/api')->can('configuration');
     }
 
 }

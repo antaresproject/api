@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Http\Router;
 
@@ -108,6 +104,7 @@ class Adapter
     {
         $middleware = array_merge(['api.throttle', 'api.auth',], array_get($route->getAction(), 'middleware', []));
         $attributes = array_merge(compact('middleware', 'namespace'), config('api.throttling', []));
+
 
         $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($route) {
             $targetAction = $this->getRouteTargetAction($route);

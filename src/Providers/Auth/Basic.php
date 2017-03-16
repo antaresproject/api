@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Providers\Auth;
 
@@ -40,9 +36,9 @@ class Basic extends BaseAuthManager
     public function onceBasic($identifier)
     {
         $response = parent::onceBasic($identifier);
-        if (!$this->isValid($response)) {
-            app(Autoban::class)->delay();
-        }
+//        if (!$this->isValid($response)) {
+//            app(Autoban::class)->delay();
+//        }
         return $response;
     }
 

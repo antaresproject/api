@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,15 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api\Processor;
 
+use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
 use Antares\Api\Http\Presenters\ConfigurationPresenter;
 use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
-use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
 use Exception;
 use Log;
 
@@ -81,6 +77,7 @@ class ConfigurationProcessor
     public function update(ConfigurationUpdaterListener $listener, array $input)
     {
         try {
+
             foreach (array_get($input, 'drivers', []) as $driver => $config) {
                 $this->authProviderService->updateDriver($driver, $config);
                 event('api.driver.' . $driver . '.update', [$input, $this->authProviderService]);

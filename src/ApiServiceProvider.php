@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,9 +18,6 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api;
 
 use Antares\Foundation\Support\Providers\ModuleServiceProvider;
@@ -34,9 +30,9 @@ use Antares\Api\Http\Middleware\ApiMiddleware;
 use Antares\Api\Services\AuthProviderService;
 use Antares\Api\Http\Router\ControllerFinder;
 use Dingo\Api\Routing\Router as ApiRouter;
+use Antares\Api\Http\Handlers\MenuUser;
 use Antares\Api\Listener\UserConfig;
 use Antares\Api\Listener\RoleConfig;
-use Antares\Api\Http\Handlers\MenuUser;
 use Antares\Api\Model\ApiRoles;
 use Antares\Acl\RoleActionList;
 use Illuminate\Routing\Router;
