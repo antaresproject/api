@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Api
- * @version    0.9.0
+ * @version    0.9.2
  * @author     Antares Team
  * @license    BSD License (3-clause)
  * @copyright  (c) 2017, Antares Project
@@ -77,25 +77,15 @@ class Logs extends ActivityLogs
      *
      * @return String
      */
-    protected function typesSelect()
+    protected function types()
     {
-        $types    = app(LogTypes::class)->select(['name', 'id'])->get();
-        $options  = ['' => trans('antares/logger::messages.all')];
-        $selected = request()->ajax() ? null : 1;
-        if (!is_null($this->typeId) && !is_null($found    = $types->where('id', (int) $this->typeId)->first())) {
-            $selected = $found->name;
-        }
+        $types   = app(LogTypes::class)->select(['name', 'id'])->get();
+        $options = ['' => trans('antares/logger::messages.all')];
         foreach ($types as $type) {
             array_set($options, $type->name, ucfirst(Str::humanize($type->name)));
         }
         $this->resolveExtensionsUsingApi($options);
-        $classname = 'logs-select-type';
-        app('antares.asset')->container('antares/foundation::scripts')->inlineScript('grid-stack', $this->inline($classname, 1));
-        return Form::select('type', $options, $selected, [
-                    'data-prefix'            => '',
-                    'data-selectAR--mdl-big' => "true",
-                    'class'                  => $classname . ' mr24 select2--prefix',
-        ]);
+        return $options;
     }
 
     /**
