@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,14 +18,15 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api\Http\Datatable;
 
 use Antares\Logger\Http\Datatables\ActivityLogs;
 use Antares\Logger\Model\Logs as LogsModel;
+use Symfony\Component\Finder\Finder;
 use Illuminate\Support\Facades\DB;
+use Antares\Logger\Model\LogTypes;
+use Antares\Support\Facades\Form;
+use Antares\Support\Str;
 
 class Logs extends ActivityLogs
 {
@@ -70,6 +70,54 @@ class Logs extends ActivityLogs
             $query->orderBy('tbl_logs.type_id', $direction);
         });
         return $query;
+    }
+
+    /**
+     * Creates select for types
+     *
+     * @return String
+     */
+    protected function typesSelect()
+    {
+        $types    = app(LogTypes::class)->select(['name', 'id'])->get();
+        $options  = ['' => trans('antares/logger::messages.all')];
+        $selected = request()->ajax() ? null : 1;
+        if (!is_null($this->typeId) && !is_null($found    = $types->where('id', (int) $this->typeId)->first())) {
+            $selected = $found->name;
+        }
+        foreach ($types as $type) {
+            array_set($options, $type->name, ucfirst(Str::humanize($type->name)));
+        }
+        $this->resolveExtensionsUsingApi($options);
+        $classname = 'logs-select-type';
+        app('antares.asset')->container('antares/foundation::scripts')->inlineScript('grid-stack', $this->inline($classname, 1));
+        return Form::select('type', $options, $selected, [
+                    'data-prefix'            => '',
+                    'data-selectAR--mdl-big' => "true",
+                    'class'                  => $classname . ' mr24 select2--prefix',
+        ]);
+    }
+
+    /**
+     * Resolves extensions using api
+     * 
+     * @param array $options
+     * @return array
+     */
+    protected function resolveExtensionsUsingApi(&$options)
+    {
+        $extensions      = extensions();
+        $extensionFinder = app('antares.extension.finder');
+        foreach ($extensions as $extension) {
+            $path   = $extensionFinder->resolveExtensionPath(array_get($extension, 'path'));
+            $finder = new Finder();
+            $count  = $finder->directories()->in($path . DIRECTORY_SEPARATOR . 'src')->depth('> 2')->name('/^Api/')->count();
+            $name   = array_get($extension, 'name');
+            if (!$count && array_key_exists($name, $options)) {
+                unset($options[$name]);
+            }
+        }
+        return $options;
     }
 
 }

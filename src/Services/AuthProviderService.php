@@ -201,9 +201,7 @@ class AuthProviderService
      */
     public function save()
     {
-        if (count($this->driversToUpdate) === 0) {
-            return;
-        }
+
 
         $component = Component::findOneByName('api');
         $options   = $component->options;
