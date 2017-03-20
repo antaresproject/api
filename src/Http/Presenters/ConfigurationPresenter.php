@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Http\Presenters;
 
@@ -64,7 +60,7 @@ class ConfigurationPresenter
         $this->breadcrumb->onIndex();
         publish('api', ['js/switcher.js']);
         return $this->formFactory->of('antares.api.configuration.index', function(FormGrid $form) use($authProviderService) {
-                    $url = route('admin.api.configuration.update');
+                    $url = handles('api.configuration.update');
 
                     $form->name('API Auth Drivers Configuration');
                     $form->simple($url, ['id' => 'api-configuration-form']);

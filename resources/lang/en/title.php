@@ -21,5 +21,5 @@ return [
     'configuration'        => 'API',
     'auth_drivers'         => 'Authentication Drivers',
     'enabled_auth_drivers' => 'Enabled API Authentication Drivers',
-    'api_log'              => 'Api Log'
+    'api_log'              => 'API Log'
 ];
