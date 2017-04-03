@@ -31,11 +31,11 @@ class JWT extends BaseJWTAuth
     /**
      * {@inheritdoc}
      */
-    public function authenticate()
+    public function authenticate($token = false)
     {
         $autoban = app(Autoban::class);
         try {
-            $authenticated = parent::authenticate();
+            $authenticated = parent::authenticate($token);
         } catch (Exception $ex) {
             if (!$this->isValid()) {
                 $autoban->delay();

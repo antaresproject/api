@@ -91,13 +91,11 @@ class ApiServiceProvider extends ModuleServiceProvider
 
     /**
      * Boots service provider
-     * 
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-
-        parent::boot($router);
+        parent::boot();
+        $router = $this->app->make(Router::class);
 
 
         $this->app->bind(RouterAdapter::class, function($app) {
