@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Listener;
 
@@ -41,8 +37,10 @@ class RoleConfig
      *
      * @param FormBuilder $form
      */
-    public function handle(Model $model, FormBuilder $form)
+    public function handle($name, array $params = [])
     {
+        $model = $params[0];
+        $form  = $params[1];
         $form->extend(function(FormGrid $grid) use($model) {
             $grid->fieldset('api_configuration', function (Fieldset $fieldset) use($model) {
                 $fieldset->legend(trans('antares/api::labels.api_configuration'));

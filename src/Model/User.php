@@ -18,20 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Contracts;
+namespace Antares\Api\Model;
 
-use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Api\Model\User;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Antares\Model\User as AntaresUser;
 
-interface AuthProviderPresenterContract
+class User extends AntaresUser implements JWTSubject
 {
-
-    /**
-     * Setup fieldset form.
-     *
-     * @param Fieldset $fieldset
-     * @param User $user
-     * @return mixed
-     */
-    public function fieldset(Fieldset $fieldset, User $user);
+    
 }

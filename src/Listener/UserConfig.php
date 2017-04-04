@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,9 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
 
 namespace Antares\Api\Listener;
 

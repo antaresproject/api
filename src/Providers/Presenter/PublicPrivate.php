@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,9 +18,6 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api\Providers\Presenter;
 
 use Antares\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
@@ -29,7 +25,7 @@ use Antares\Api\Providers\PublicPrivate as PublicPrivateProvider;
 use Antares\Api\Contracts\AuthProviderPresenterContract;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Model\User;
+use Antares\Api\Model\User;
 
 class PublicPrivate implements AuthProviderPresenterContract
 {
