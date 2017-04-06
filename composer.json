@@ -9,10 +9,8 @@
             "email": "contact@antaresproject.io"
         }
     ],
-    "extra": {
-        "class": "Installer\\Composer\\Extension\\ComponentPlugin"
-    },
     "require": {
+        "antaresproject/component-installer-plugin": "*",
         "php": ">=5.5.9",
         "dingo/api": "~1.0"
     },
