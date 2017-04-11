@@ -125,20 +125,4 @@ class ApiServiceProvider extends ModuleServiceProvider
         }
     }
 
-    /**
-     * @return RoleActionList
-     */
-    public static function acl()
-    {
-        $actions = [
-            new Action('admin.api.configuration.*', 'Configuration'),
-            new Action('api.*', 'Can Use Api'),
-        ];
-
-        $permissions = new RoleActionList;
-        $permissions->add(Role::admin()->name, $actions);
-
-        return $permissions;
-    }
-
 }
