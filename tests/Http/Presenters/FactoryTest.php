@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,9 +18,6 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api\Tests\Http\Router;
 
 use Mockery as m;
@@ -30,115 +26,125 @@ use Antares\Api\Http\Presenters\Factory;
 use Illuminate\View\View;
 use ReflectionClass;
 
-class FactoryTest extends TestCase {
-    
+class FactoryTest extends TestCase
+{
+
     /**
      *
      * @var Factory
      */
     protected $factory;
-    
-    public function setUp() {
+
+    public function setUp()
+    {
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
-        
+
         parent::setUp();
-        
-        $config         = config('antares/api::config', []);
-        $this->factory  = new Factory($this->app, $config);
+
+        $config        = config('antares/api::config', []);
+        $this->factory = new Factory($this->app, $config);
     }
-    
-    public function tearDown() {
+
+    public function tearDown()
+    {
         parent::tearDown();
         m::close();
     }
-    
-    protected function getDatatablesMock() {
+
+    protected function getDatatablesMock()
+    {
+
         return m::mock(\Antares\Datatables\Html\Builder::class);
     }
-    
-    protected function getFormMock() {
+
+    protected function getFormMock()
+    {
         return m::mock(\Antares\Html\Form\FormBuilder::class);
     }
-    
-    public function testGetAdapterForClass() {
+
+    public function testGetAdapterForClass()
+    {
         $reflectionClass = new ReflectionClass(Factory::class);
-        $method = $reflectionClass->getMethod('getAdapterForClass');
+        $method          = $reflectionClass->getMethod('getAdapterForClass');
         $method->setAccessible(true);
-        
+
         $datatables = $this->getDatatablesMock();
         $form       = $this->getFormMock();
-        
+
         $adapter = $method->invoke($this->factory, $datatables);
         $this->assertEquals(\Antares\Api\Adapters\DatatablesAdapter::class, $adapter);
-        
+
         $adapter = $method->invoke($this->factory, $form);
         $this->assertEquals(\Antares\Api\Adapters\FormAdapter::class, $adapter);
     }
-    
-    public function testCreateAdapter() {
+
+    public function testCreateAdapter()
+    {
         $reflectionClass = new ReflectionClass(Factory::class);
-        $method = $reflectionClass->getMethod('createAdapter');
+        $method          = $reflectionClass->getMethod('createAdapter');
         $method->setAccessible(true);
-        
+
         $adapters = [
             \Antares\Api\Adapters\DatatablesAdapter::class,
             \Antares\Api\Adapters\FormAdapter::class,
         ];
-        
-        foreach($adapters as $adapter) {
+
+        foreach ($adapters as $adapter) {
             $createdAdapter = $method->invoke($this->factory, $adapter);
-            
+
             $this->assertInstanceOf($adapter, $createdAdapter);
         }
     }
-    
-    public function testGetPreparedDataWithoutView() {
-        $input          = ['variable' => 'test'];
-        $preparedInput  = $this->factory->getPreparedData($input);
-        
+
+    public function testGetPreparedDataWithoutView()
+    {
+        $input         = ['variable' => 'test'];
+        $preparedInput = $this->factory->getPreparedData($input);
+
         $this->assertEquals($input, $preparedInput);
     }
-    
-    public function testGetPreparedDataWithView() {
+
+    public function testGetPreparedDataWithView()
+    {
         $input = ['variable' => 'test'];
-        
+
         $view = m::mock(View::class)
                 ->shouldReceive('getData')
                 ->once()
                 ->andReturn($input)
                 ->getMock();
-        
+
         $preparedInput = $this->factory->getPreparedData($view);
-        
+
         $this->assertEquals($input, $preparedInput);
     }
-    
-    public function testDetatablesAdapter() {
+
+    public function testDetatablesAdapter()
+    {
         $response = ['test'];
-        
+
         $datatables = $this->getDatatablesMock()
-                ->shouldReceive('getRawData')
-                ->once()
-                ->andReturn($response)
+                ->shouldReceive('getQuery')->once()->andReturn($response)
+                ->shouldReceive('getDeferedData')->once()->andReturn($response)
                 ->getMock();
-        
+
         $input = ['variable' => $datatables];
-        
+
         $preparedInput = $this->factory->getPreparedData($input);
-        
-        $this->assertEquals($response, $preparedInput);
+        $this->assertEquals($input, $preparedInput);
     }
-    
-    public function testFormAdapter() {
+
+    public function testFormAdapter()
+    {
         $control = [
-                "name" => "name",
-                "value" => "ooo",
-                "label" => "Name",
-                "options" => [],
-                "checked" => false,
-                "type" => "input:text",
-            ];
-        
+            "name"    => "name",
+            "value"   => "ooo",
+            "label"   => "Name",
+            "options" => [],
+            "checked" => false,
+            "type"    => "input:text",
+        ];
+
         $validField = m::mock(Antares\Html\Form\Field::class)
                 ->shouldReceive('get')
                 ->with('type')
@@ -148,14 +154,14 @@ class FactoryTest extends TestCase {
                 ->once()
                 ->andReturn($control)
                 ->getMock();
-        
+
         $invalidField = m::mock(Antares\Html\Form\Field::class)
                 ->shouldReceive('get')
                 ->with('type')
                 ->once()
                 ->andReturn('input:hidden')
                 ->getMock();
-        
+
         $fieldset = m::mock(\Antares\Html\Form\Fieldset::class)
                 ->shouldReceive('getName')
                 ->once()
@@ -163,23 +169,23 @@ class FactoryTest extends TestCase {
                 ->shouldReceive('controls')
                 ->andReturn([$validField, $invalidField])
                 ->getMock();
-        
+
         $formRaw = [
-            'name'  => 'form name',
-            'rules' => [
+            'name'      => 'form name',
+            'rules'     => [
                 'name' => ['required'],
             ],
             'fieldsets' => [$fieldset],
         ];
-        
+
         $form = $this->getFormMock()
                 ->shouldReceive('getRawResponse')
                 ->once()
                 ->andReturn($formRaw)
                 ->getMock();
-        
+
         $input = ['variable' => $form];
-        
+
         $expectedData = [
             'form' => [
                 'name'      => 'form name',
@@ -188,16 +194,16 @@ class FactoryTest extends TestCase {
                 ],
                 'fieldsets' => [
                     [
-                        'name'      => 'Fieldset Name',
-                        'controls'  => [$control],
+                        'name'     => 'Fieldset Name',
+                        'controls' => [$control],
                     ]
                 ],
             ],
         ];
-        
+
         $preparedInput = $this->factory->getPreparedData($input);
-        
+
         $this->assertEquals($expectedData, $preparedInput);
     }
-    
+
 }
