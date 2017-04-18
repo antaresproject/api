@@ -173,6 +173,7 @@ class AdapterTest extends TestCase
 
     public function testAdaptRoute()
     {
+
         $action = [
             'controller' => 'App\Http\Admin\TestController@index',
             'namespace'  => 'App\Http\Admin',
@@ -182,6 +183,7 @@ class AdapterTest extends TestCase
 
         $uri     = 'antares/test/index';
         $adapter = $this->getAdapter();
+        $adapter->setVersion('v1');
 
         $this->route
                 ->shouldReceive('getAction')
@@ -191,8 +193,7 @@ class AdapterTest extends TestCase
                 ->getMock();
 
         $adapter->adaptRoute($this->route);
-
-        $this->assertCount(1, $adapter->getApiRouter()->getAdapterRoutes());
+        $this->assertCount(2, $adapter->getApiRouter()->getAdapterRoutes());
     }
 
     public function testAdaptRoutes()
