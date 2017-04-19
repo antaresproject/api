@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,9 +18,6 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
 namespace Antares\Api\Tests\Http\Middleware;
 
 use Mockery as m;
@@ -39,173 +35,181 @@ use Antares\Extension\Factory as ExtensionFactory;
 use ReflectionClass;
 use Illuminate\Http\JsonResponse;
 
-class ApiMiddlewareTest extends TestCase {
-    
+class ApiMiddlewareTest extends TestCase
+{
+
     /**
      *
      * @var Mockery
      */
     protected $container;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $dispatcher;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $router;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $responseFactory;
-    
-    public function setUp() {
+
+    public function setUp()
+    {
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
         $this->addProvider(LaravelServiceProvider::class);
-        
+
         parent::setUp();
-        
-        $this->container        = m::mock(Container::class);
-        $this->dispatcher       = m::mock(Dispatcher::class);
-        $this->router           = m::mock(Router::class);
-        $this->responseFactory  = $this->app->make(ResponseFactory::class);
+
+        $this->container       = m::mock(Container::class);
+        $this->dispatcher      = m::mock(Dispatcher::class);
+        $this->router          = m::mock(Router::class);
+        $this->responseFactory = $this->app->make(ResponseFactory::class);
     }
-    
-    public function tearDown() {
+
+    public function tearDown()
+    {
         parent::tearDown();
         m::close();
     }
-    
+
     /**
      * 
      * @return ApiMiddleware
      */
-    protected function getApiMiddleware() {
+    protected function getApiMiddleware()
+    {
         return new ApiMiddleware($this->container, $this->dispatcher, $this->router, $this->responseFactory);
     }
-    
-    public function testCanHandleAsApiExtensionEnabled() {
+
+    public function testCanHandleAsApiExtensionEnabled()
+    {
         $reflectionClass = new ReflectionClass(ApiMiddleware::class);
-        $method = $reflectionClass->getMethod('canHandle');
+        $method          = $reflectionClass->getMethod('canHandle');
         $method->setAccessible(true);
-        
+
         $extensionFactory = m::mock(ExtensionFactory::class)
                 ->shouldReceive('isActive')
                 ->with('api')
                 ->andReturn(true)
                 ->getMock();
-        
+
         $this->container
                 ->shouldReceive('make')
                 ->with('antares.extension')
                 ->andReturn($extensionFactory)
                 ->getMock();
-        
+
         $request = m::mock(ApiRequest::class);
-        $result = $method->invoke($this->getApiMiddleware(), $request);
-        
+        $result  = $method->invoke($this->getApiMiddleware(), $request);
+
         $this->assertTrue($result);
-        
+
         $request = m::mock(Request::class);
-        $result = $method->invoke($this->getApiMiddleware(), $request);
-        
+        $result  = $method->invoke($this->getApiMiddleware(), $request);
+
         $this->assertFalse($result);
     }
-    
-    public function testCanHandleAsApiExtensionDisabled() {
+
+    public function testCanHandleAsApiExtensionDisabled()
+    {
         $reflectionClass = new ReflectionClass(ApiMiddleware::class);
-        $method = $reflectionClass->getMethod('canHandle');
+        $method          = $reflectionClass->getMethod('canHandle');
         $method->setAccessible(true);
-        
+
         $extensionFactory = m::mock(ExtensionFactory::class)
                 ->shouldReceive('isActive')
                 ->with('api')
                 ->andReturn(false)
                 ->getMock();
-        
+
         $this->container
                 ->shouldReceive('make')
                 ->with('antares.extension')
                 ->andReturn($extensionFactory)
                 ->getMock();
-        
+
         $request = m::mock(ApiRequest::class);
-        $result = $method->invoke($this->getApiMiddleware(), $request);
-        
+        $result  = $method->invoke($this->getApiMiddleware(), $request);
+
         $this->assertFalse($result);
-        
+
         $request = m::mock(Request::class);
-        $result = $method->invoke($this->getApiMiddleware(), $request);
-        
+        $result  = $method->invoke($this->getApiMiddleware(), $request);
+
         $this->assertFalse($result);
     }
-    
-    public function testReturnResponseAsNotJsonRequest() {
+
+    public function testReturnResponseAsNotJsonRequest()
+    {
         $reflectionClass = new ReflectionClass(ApiMiddleware::class);
-        $method = $reflectionClass->getMethod('returnResponse');
+        $method          = $reflectionClass->getMethod('returnResponse');
         $method->setAccessible(true);
-        
-        $data       = ['test-data'];
-        $request    = m::mock(Request::class)
+
+        $data    = ['test-data'];
+        $request = m::mock(Request::class)
                 ->shouldReceive('isJson')
                 ->andReturn(false)
                 ->shouldReceive('wantsJson')
                 ->andReturn(false)
                 ->getMock();
-        
+
         $result = $method->invoke($this->getApiMiddleware(), $request, $data);
-        
-        $this->assertEquals($data, $result);
+        $this->assertInstanceOf(JsonResponse::class, $result);
     }
-    
-    public function testReturnResponseAsJsonRequest() {
+
+    public function testReturnResponseAsJsonRequest()
+    {
         $reflectionClass = new ReflectionClass(ApiMiddleware::class);
-        $method = $reflectionClass->getMethod('returnResponse');
+        $method          = $reflectionClass->getMethod('returnResponse');
         $method->setAccessible(true);
-        
-        $data           = ['test-data'];
-        $statusCode     = 200;
-        
+
+        $data       = ['test-data'];
+        $statusCode = 200;
+
         $request = m::mock(Request::class)
                 ->shouldReceive('isJson')
                 ->andReturn(true)
                 ->shouldReceive('wantsJson')
                 ->andReturn(false)
                 ->getMock();
-        
+
         $result = $method->invoke($this->getApiMiddleware(), $request, $data);
-        
+
         $this->assertInstanceOf(JsonResponse::class, $result);
         $this->assertEquals($statusCode, $result->getStatusCode());
         $this->assertEquals($data, $result->getData());
     }
-    
-    public function testReturnResponseAsJsonRequestByResponseObject() {
+
+    public function testReturnResponseAsJsonRequestByResponseObject()
+    {
         $reflectionClass = new ReflectionClass(ApiMiddleware::class);
-        $method = $reflectionClass->getMethod('returnResponse');
+        $method          = $reflectionClass->getMethod('returnResponse');
         $method->setAccessible(true);
-        
-        $statusCode     = 302;
-        $data           = new Response(['test'], $statusCode);
-        
+
+        $statusCode = 302;
+        $data       = new Response(['test'], $statusCode);
+
         $request = m::mock(Request::class)
                 ->shouldReceive('isJson')
                 ->andReturn(true)
                 ->shouldReceive('wantsJson')
                 ->andReturn(false)
                 ->getMock();
-        
+
         $result = $method->invoke($this->getApiMiddleware(), $request, $data);
-        
+
         $this->assertInstanceOf(JsonResponse::class, $result);
         $this->assertEquals($statusCode, $result->getStatusCode());
         $this->assertEquals(['test'], $result->getData());
     }
-    
+
 }

@@ -102,6 +102,7 @@ class Adapter
      */
     public function adaptRoute(Route $route, $namespace = null)
     {
+
         $middleware = array_merge(['api.throttle', 'api.auth',], array_get($route->getAction(), 'middleware', []));
         $attributes = array_merge(compact('middleware', 'namespace'), config('api.throttling', []));
 
