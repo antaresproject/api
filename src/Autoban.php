@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,13 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api;
 
-
-
-namespace Antares\Api;
-
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Model\ApiUsers;
+use Antares\Modules\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Model\ApiUsers;
 use Antares\Model\User;
 use Exception;
 

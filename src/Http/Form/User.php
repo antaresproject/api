@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,10 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Form;
+namespace Antares\Modules\Api\Http\Form;
 
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Html\Form\Grid;

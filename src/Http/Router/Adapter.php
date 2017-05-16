@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Router;
+namespace Antares\Modules\Api\Http\Router;
 
 use Dingo\Api\Routing\Router as ApiRouter;
 use Illuminate\Support\Facades\Request;
@@ -49,7 +49,7 @@ class Adapter
      * constructing
      * 
      * @param ApiRouter $apiRouter
-     * @param \Antares\Api\Http\Router\ControllerFinder $finder
+     * @param \Antares\Modules\Api\Http\Router\ControllerFinder $finder
      */
     public function __construct(ApiRouter $apiRouter, ControllerFinder $finder)
     {

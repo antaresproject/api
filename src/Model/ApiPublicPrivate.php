@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,10 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Model;
+namespace Antares\Modules\Api\Model;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Antares\Model\User;

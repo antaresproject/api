@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Tests\Http\Router;
+namespace Antares\Modules\Api\Tests\Http\Router;
 
 use Mockery as m;
 use Antares\Testing\TestCase;
-use Antares\Api\Http\Presenters\Factory;
+use Antares\Modules\Api\Http\Presenters\Factory;
 use Illuminate\View\View;
 use ReflectionClass;
 
@@ -72,10 +72,10 @@ class FactoryTest extends TestCase
         $form       = $this->getFormMock();
 
         $adapter = $method->invoke($this->factory, $datatables);
-        $this->assertEquals(\Antares\Api\Adapters\DatatablesAdapter::class, $adapter);
+        $this->assertEquals(\Antares\Modules\Api\Adapters\DatatablesAdapter::class, $adapter);
 
         $adapter = $method->invoke($this->factory, $form);
-        $this->assertEquals(\Antares\Api\Adapters\FormAdapter::class, $adapter);
+        $this->assertEquals(\Antares\Modules\Api\Adapters\FormAdapter::class, $adapter);
     }
 
     public function testCreateAdapter()
@@ -85,8 +85,8 @@ class FactoryTest extends TestCase
         $method->setAccessible(true);
 
         $adapters = [
-            \Antares\Api\Adapters\DatatablesAdapter::class,
-            \Antares\Api\Adapters\FormAdapter::class,
+            \Antares\Modules\Api\Adapters\DatatablesAdapter::class,
+            \Antares\Modules\Api\Adapters\FormAdapter::class,
         ];
 
         foreach ($adapters as $adapter) {

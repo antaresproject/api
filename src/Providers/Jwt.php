@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,13 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Contracts\AuthProviderPresenterContract;
-use Antares\Api\Providers\Presenter\JwtPresenter;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Presenter\JwtPresenter;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Auth as DingoAuth;
 
@@ -71,7 +67,7 @@ class Jwt extends AuthProvider
     public function registerAuth()
     {
         $this->container->make(DingoAuth\Auth::class)->extend('jwt', function($app) {
-            return new DingoAuth\Provider\JWT($app[\Antares\Api\Providers\Auth\JWT::class]);
+            return new DingoAuth\Provider\JWT($app[\Antares\Modules\Api\Providers\Auth\JWT::class]);
         });
     }
 

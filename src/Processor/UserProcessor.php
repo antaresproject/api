@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,17 +18,14 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Processor;
 
-
-
-namespace Antares\Api\Processor;
-
-use Antares\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
+use Antares\Modules\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
 use Antares\Routing\Traits\ControllerResponseTrait;
-use Antares\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Antares\Html\Form\FormBuilder;
-use Antares\Api\Http\Form\User;
-use Antares\Api\Model\ApiUsers;
+use Antares\Modules\Api\Http\Form\User;
+use Antares\Modules\Api\Model\ApiUsers;
 
 class UserProcessor
 {

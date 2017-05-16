@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Datatable;
+namespace Antares\Modules\Api\Http\Datatable;
 
 use Antares\Logger\Http\Datatables\ActivityLogs;
 use Antares\Logger\Model\Logs as LogsModel;

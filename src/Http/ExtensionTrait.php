@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,14 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http;
+namespace Antares\Modules\Api\Http;
 
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Routing\Router;
-use Antares\Api\Http\Router\Adapter as RouterAdapter;
+use Antares\Modules\Api\Http\Router\Adapter as RouterAdapter;
 
 trait ExtensionTrait
 {
@@ -37,7 +33,7 @@ trait ExtensionTrait
      */
     protected function registerApiRoutes(Container $container, Router $router)
     {
-        if (! $container->make('antares.extension')->isActive('api')) {
+        if (!$container->make('antares.extension')->isActive('api')) {
             return false;
         }
 

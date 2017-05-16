@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,13 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Contracts\AuthProviderContract;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Contracts\AuthProviderContract;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Illuminate\Contracts\Container\Container;
 
 abstract class AuthProvider implements AuthProviderContract

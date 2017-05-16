@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,71 +18,75 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Tests\Responses;
+namespace Antares\Modules\Api\Tests\Responses;
 
 use Mockery as m;
 use Antares\Testing\TestCase;
 use Illuminate\Support\ViewErrorBag;
-use Antares\Api\Responses\ValidationError;
-use Antares\Api\Contracts\ResponseContract;
+use Antares\Modules\Api\Responses\ValidationError;
+use Antares\Modules\Api\Contracts\ResponseContract;
 use Illuminate\Http\Response;
 
-class ValidationErrorTest extends TestCase {
-    
+class ValidationErrorTest extends TestCase
+{
+
     /**
      *
      * @var Mockery
      */
     protected $errorBag;
-    
-    public function setUp() {
+
+    public function setUp()
+    {
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
-        
+
         parent::setUp();
-        
+
         $this->errorBag = m::mock(ViewErrorBag::class)
                 ->shouldReceive('messages')
                 ->once()
                 ->andReturn([
-                    'name' => 'The name field is required.',
-                    'test' => 'The test field is required.',
-                ]);
+            'name' => 'The name field is required.',
+            'test' => 'The test field is required.',
+        ]);
     }
-    
-    public function tearDown() {
+
+    public function tearDown()
+    {
         parent::tearDown();
         m::close();
     }
-    
-    public function testInstance() {
+
+    public function testInstance()
+    {
         $message = new ValidationError($this->errorBag->getMock());
-        
+
         $this->assertInstanceOf(ResponseContract::class, $message);
     }
-    
-    public function testResponseInstance() {
-        $message    = new ValidationError($this->errorBag->getMock());
-        $response   = $message->response();
-        
+
+    public function testResponseInstance()
+    {
+        $message  = new ValidationError($this->errorBag->getMock());
+        $response = $message->response();
+
         $this->assertInstanceOf(Response::class, $response);
     }
-    
-    public function testResponse() {
-        $message    = new ValidationError($this->errorBag->getMock());
-        $response   = $message->response();
-        
+
+    public function testResponse()
+    {
+        $message  = new ValidationError($this->errorBag->getMock());
+        $response = $message->response();
+
         $expectedContent = [
-            'type'      => 'validation error',
-            'fields'  => [
+            'type'   => 'validation error',
+            'fields' => [
                 'name' => 'The name field is required.',
                 'test' => 'The test field is required.'
             ],
         ];
-        
+
         $this->assertEquals(400, $response->getStatusCode());
         $this->assertEquals($expectedContent, $response->getOriginalContent());
     }
+
 }

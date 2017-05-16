@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Providers\Auth;
+namespace Antares\Modules\Api\Providers\Auth;
 
 use Antares\Auth\AuthManager as BaseAuthManager;
 use Dingo\Api\Http\Request;
-use Antares\Api\Autoban;
+use Antares\Modules\Api\Autoban;
 
 class Basic extends BaseAuthManager
 {

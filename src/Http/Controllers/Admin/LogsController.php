@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Controllers\Admin;
+namespace Antares\Modules\Api\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
-use Antares\Api\Http\Datatable\Logs;
+use Antares\Modules\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
+use Antares\Modules\Api\Http\Datatable\Logs;
 
 class LogsController extends AdminController
 {

@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,73 +18,76 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Tests\Http\Router;
+namespace Antares\Modules\Api\Tests\Http\Router;
 
 use Mockery as m;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Provider\LaravelServiceProvider;
-use Antares\Api\Http\Router\Dispatcher;
+use Antares\Modules\Api\Http\Router\Dispatcher;
 use Antares\Testing\TestCase;
-use Antares\Api\Http\Response;
+use Antares\Modules\Api\Http\Response;
 use Illuminate\Routing\Route;
 
-class DispatcherTest extends TestCase {
-    
+class DispatcherTest extends TestCase
+{
+
     /**
      *
      * @var Mockery
      */
     protected $container;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $response;
-    
-    public function setUp() {
+
+    public function setUp()
+    {
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
         $this->addProvider(LaravelServiceProvider::class);
-        
+
         parent::setUp();
-        
+
         $this->container = m::mock(Container::class);
-        $this->response = m::mock(Response::class);
+        $this->response  = m::mock(Response::class);
     }
-    
-    public function tearDown() {
+
+    public function tearDown()
+    {
         parent::tearDown();
         m::close();
     }
-    
+
     /**
      * 
      * @return Dispatcher
      */
-    protected function getDispatcher() {
+    protected function getDispatcher()
+    {
         return new Dispatcher($this->container, $this->response);
     }
-    
-    public function testHandleWithoutControllerAction() {
+
+    public function testHandleWithoutControllerAction()
+    {
         $route = m::mock(Route::class)
                 ->shouldReceive('getAction')
                 ->once()
                 ->andReturnNull()
                 ->getMock();
-        
+
         $response = $this->getDispatcher()->handle($route);
-        
+
         $this->assertNull($response);
     }
-    
-    public function testHandleWithControllerAction() {
-        $action         = ['controller' => 'TestController@action'];
-        $parameters     = ['id' => 1];
-        $responseData   = [];
-        
+
+    public function testHandleWithControllerAction()
+    {
+        $action       = ['controller' => 'TestController@action'];
+        $parameters   = ['id' => 1];
+        $responseData = [];
+
         $route = m::mock(Route::class)
                 ->shouldReceive('getAction')
                 ->once()
@@ -94,24 +96,24 @@ class DispatcherTest extends TestCase {
                 ->once()
                 ->andReturn($parameters)
                 ->getMock();
-        
+
         $this->container
                 ->shouldReceive('call')
                 ->with($action['controller'], $parameters)
                 ->once()
                 ->andReturn($responseData)
                 ->getMock();
-        
+
         $this->response
                 ->shouldReceive('handle')
                 ->once()
                 ->with($responseData)
                 ->andReturn($responseData)
                 ->getMock();
-        
+
         $response = $this->getDispatcher()->handle($route);
-        
+
         $this->assertEquals($responseData, $response);
     }
-    
+
 }

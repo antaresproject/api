@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,12 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Contracts\Listeners\Configuration;
 
-
-
-namespace Antares\Api\Contracts\Listeners\Configuration;
-
-interface Updater {
+interface Updater
+{
 
     /**
      * Response when updating auth driver failed.
@@ -40,5 +37,4 @@ interface Updater {
      * @return mixed
      */
     public function authUpdated();
-
 }

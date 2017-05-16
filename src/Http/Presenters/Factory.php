@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,102 +18,104 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Http\Presenters;
 
-
-
-namespace Antares\Api\Http\Presenters;
-
-use Antares\Api\Contracts\AdapterContract;
+use Antares\Modules\Api\Contracts\AdapterContract;
 use Illuminate\Container\Container;
 use Illuminate\View\View;
 
-class Factory {
-    
+class Factory
+{
+
     /**
      *
      * @var Container
      */
     protected $app;
-    
+
     /**
      *
      * @var array
      */
     protected $adapters;
-    
+
     /**
      *
      * @var array
      */
     protected $maps;
-    
+
     /**
      * 
      * @param Container $app
      * @param array $config
      */
-    public function __construct(Container $app, array $config) {
+    public function __construct(Container $app, array $config)
+    {
         $this->app      = $app;
         $this->adapters = array_get($config, 'adapters', []);
         $this->maps     = array_get($config, 'maps', []);
     }
-    
+
     /**
      * 
      * @param View $input
      * @return mixed
      */
-    public function getPreparedData($input) {
+    public function getPreparedData($input)
+    {
         $data = ($input instanceof View) ? $input->getData() : $input;
-        
-        if(is_array($data)) {
-            foreach($data as $variable) {
-                if($transformed = $this->getTransformedVariable($variable)) {
+
+        if (is_array($data)) {
+            foreach ($data as $variable) {
+                if ($transformed = $this->getTransformedVariable($variable)) {
                     return $transformed;
                 }
             }
-        }
-        else if($transformed = $this->getTransformedVariable($data)) {
+        } else if ($transformed = $this->getTransformedVariable($data)) {
             return $transformed;
         }
-        
+
         return $data;
     }
-    
+
     /**
      * 
      * @param mixed $variable
      * @return mixed
      */
-    protected function getTransformedVariable($variable) {
+    protected function getTransformedVariable($variable)
+    {
         $adapter = $this->getAdapterForClass($variable);
-        
-        if($adapter) {
+
+        if ($adapter) {
             return $this->createAdapter($adapter)->transform($variable);
         }
     }
-    
+
     /**
      * 
      * @param mixed $data
      * @return string | null
      */
-    protected function getAdapterForClass($data) {
-        foreach($this->maps as $class => $type) {
-            if($data instanceof $class AND $adapter = array_get($this->adapters, $type)) {
+    protected function getAdapterForClass($data)
+    {
+        foreach ($this->maps as $class => $type) {
+            if ($data instanceof $class AND $adapter = array_get($this->adapters, $type)) {
                 return $adapter;
             }
         }
     }
-    
+
     /**
      * Create an instance of Adapter based of given class name.
      * 
      * @param string $adapterClassName
      * @return AdapterContract
      */
-    protected function createAdapter($adapterClassName) {
+    protected function createAdapter($adapterClassName)
+    {
         return $this->app->make($adapterClassName);
     }
-    
+
 }

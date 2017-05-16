@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,10 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
-
 /**
  * Internal API Caller
  *
@@ -29,7 +24,7 @@
  * @modified Lukasz Cirut  <lukasz.cirut@inbs.software>
  */
 
-namespace Antares\Api;
+namespace Antares\Modules\Api;
 
 use Guzzle\Http\Client;
 

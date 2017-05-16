@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,12 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Contracts\Listeners\Configuration;
 
-
-
-namespace Antares\Api\Contracts\Listeners\Configuration;
-
-interface Viewer {
+interface Viewer
+{
 
     /**
      * Response when list available auth drivers page succeed.
@@ -33,5 +30,4 @@ interface Viewer {
      * @return mixed
      */
     public function showAuthDrivers(array $data);
-
 }

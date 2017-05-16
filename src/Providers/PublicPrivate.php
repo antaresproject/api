@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,14 +18,11 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Providers\Presenter\PublicPrivate as PublicPrivatePresenter;
-use Antares\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Presenter\PublicPrivate as PublicPrivatePresenter;
+use Antares\Modules\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Illuminate\Contracts\Container\Container;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Dingo\Api\Auth as DingoAuth;

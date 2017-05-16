@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Tests\Http\Router;
+namespace Antares\Modules\Api\Tests\Http\Router;
 
 use Mockery as m;
 use Dingo\Api\Provider\LaravelServiceProvider;
-use Antares\Api\Http\Router\Adapter;
+use Antares\Modules\Api\Http\Router\Adapter;
 use Antares\Testing\TestCase;
 use Dingo\Api\Routing\Router as ApiRouter;
-use Antares\Api\Http\Router\ControllerFinder;
+use Antares\Modules\Api\Http\Router\ControllerFinder;
 use Illuminate\Routing\Route;
 use ReflectionClass;
 

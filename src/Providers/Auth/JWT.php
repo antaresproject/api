@@ -18,11 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Providers\Auth;
+namespace Antares\Modules\Api\Providers\Auth;
 
 use Tymon\JWTAuth\JWTAuth as BaseJWTAuth;
 use Dingo\Api\Http\Request;
-use Antares\Api\Autoban;
+use Antares\Modules\Api\Autoban;
 use Exception;
 
 class JWT extends BaseJWTAuth

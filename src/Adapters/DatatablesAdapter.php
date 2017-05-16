@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,16 +18,13 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Adapters;
+namespace Antares\Modules\Api\Adapters;
 
 use Antares\Datatables\Contracts\DatatablesRawDataContract;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Antares\Api\Adapter;
+use Antares\Modules\Api\Adapter;
 
 class DatatablesAdapter extends Adapter
 {

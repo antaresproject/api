@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Breadcrumb;
+namespace Antares\Modules\Api\Http\Breadcrumb;
 
 use Antares\Breadcrumb\Navigation;
 

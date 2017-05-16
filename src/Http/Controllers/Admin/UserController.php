@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Controllers\Admin;
+namespace Antares\Modules\Api\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\Api\Processor\UserProcessor;
+use Antares\Modules\Api\Processor\UserProcessor;
 
 class UserController extends AdminController
 {

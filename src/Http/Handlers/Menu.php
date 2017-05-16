@@ -18,9 +18,9 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Handlers;
+namespace Antares\Modules\Api\Http\Handlers;
 
-use Antares\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Antares\Foundation\Support\MenuHandler;
 use Antares\Contracts\Auth\Guard;
 

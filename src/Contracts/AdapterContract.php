@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,18 +18,15 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Contracts;
 
+interface AdapterContract
+{
 
-
-namespace Antares\Api\Contracts;
-
-interface AdapterContract {
-    
     /**
      * 
      * @param mixed $data
      * @return array
      */
     public function transform($data);
-    
 }

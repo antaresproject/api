@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -18,10 +17,6 @@
  * @copyright  (c) 2017, Antares Project
  * @link       http://antaresproject.io
  */
-
-
-
-
 return [
     /**
      * default pagination configuration
@@ -31,8 +26,8 @@ return [
         'page_name' => 'page'
     ],
     'adapters'                 => [
-        'datatables' => \Antares\Api\Adapters\DatatablesAdapter::class,
-        'form'       => \Antares\Api\Adapters\FormAdapter::class,
+        'datatables' => \Antares\Modules\Api\Adapters\DatatablesAdapter::class,
+        'form'       => \Antares\Modules\Api\Adapters\FormAdapter::class,
     ],
     'maps'                     => [
         \Antares\Datatables\Html\Builder::class => 'datatables',
@@ -41,9 +36,9 @@ return [
     ],
     'auth'                     => [
         'drivers' => [
-            \Antares\Api\Providers\Basic::class,
-            \Antares\Api\Providers\Jwt::class,
-            \Antares\Api\Providers\PublicPrivate::class,
+            \Antares\Modules\Api\Providers\Basic::class,
+            \Antares\Modules\Api\Providers\Jwt::class,
+            \Antares\Modules\Api\Providers\PublicPrivate::class,
         ],
     ],
     'whitelist_required_areas' => [

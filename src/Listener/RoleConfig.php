@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Listener;
+namespace Antares\Modules\Api\Listener;
 
 use Antares\Html\Form\Grid as FormGrid;
 use Illuminate\Database\Eloquent\Model;
@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
-use Antares\Api\Model\ApiRoles;
+use Antares\Modules\Api\Model\ApiRoles;
 use Exception;
 
 class RoleConfig

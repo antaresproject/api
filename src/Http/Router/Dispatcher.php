@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,14 +18,11 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Router;
+namespace Antares\Modules\Api\Http\Router;
 
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Routing\Route;
-use Antares\Api\Http\Response;
+use Antares\Modules\Api\Http\Response;
 
 class Dispatcher
 {

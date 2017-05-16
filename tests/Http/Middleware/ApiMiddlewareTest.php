@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Tests\Http\Middleware;
+namespace Antares\Modules\Api\Tests\Http\Middleware;
 
 use Mockery as m;
-use Antares\Api\Http\Middleware\ApiMiddleware;
+use Antares\Modules\Api\Http\Middleware\ApiMiddleware;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Provider\LaravelServiceProvider;
 use Dingo\Api\Http\Request as ApiRequest;
-use Antares\Api\Http\Router\Dispatcher;
+use Antares\Modules\Api\Http\Router\Dispatcher;
 use Antares\Testing\TestCase;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Routing\Router;

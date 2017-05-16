@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,46 +18,46 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api;
+namespace Antares\Modules\Api;
 
 use League\Fractal\Manager as FractalManager;
-use Antares\Api\Contracts\AdapterContract;
+use Antares\Modules\Api\Contracts\AdapterContract;
 use Illuminate\Contracts\Routing\ResponseFactory;
 
-abstract class Adapter implements AdapterContract {
-    
+abstract class Adapter implements AdapterContract
+{
+
     /**
      *
      * @var ResponseFactory
      */
     protected $response;
-    
+
     /**
      *
      * @var FractalManager
      */
     protected $fractalManager;
-    
+
     /**
      * 
      * @param ResponseFactory $response
      * @param FractalManager $fractalManager
      */
-    public function __construct(ResponseFactory $response, FractalManager $fractalManager) {
-        $this->response         = $response;
-        $this->fractalManager   = $fractalManager;
+    public function __construct(ResponseFactory $response, FractalManager $fractalManager)
+    {
+        $this->response       = $response;
+        $this->fractalManager = $fractalManager;
     }
-    
+
     /**
      * 
      * @param mixed $data
      * @return array
      */
-    public function transform($data) {
+    public function transform($data)
+    {
         return (array) $data;
     }
-    
+
 }

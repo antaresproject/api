@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Tests\Http;
+namespace Antares\Modules\Api\Tests\Http;
 
 use Mockery as m;
 use Dingo\Api\Provider\LaravelServiceProvider;
 use Antares\Testing\TestCase;
 use Illuminate\Contracts\Container\Container;
-use Antares\Api\Http\Presenters\Factory as PresenterFactory;
-use Antares\Api\Http\Response as ApiResponse;
+use Antares\Modules\Api\Http\Presenters\Factory as PresenterFactory;
+use Antares\Modules\Api\Http\Response as ApiResponse;
 use Illuminate\Http\RedirectResponse;
 use Antares\Messages\MessageBag;
 use Illuminate\Session\Store as Session;

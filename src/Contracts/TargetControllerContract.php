@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,17 +18,14 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Contracts;
 
+interface TargetControllerContract
+{
 
-
-namespace Antares\Api\Contracts;
-
-interface TargetControllerContract {
-    
     /**
      * 
      * @return \Antares\Foundation\Processor\Processor
      */
     public function getProcessor();
-    
 }

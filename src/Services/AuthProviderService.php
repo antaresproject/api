@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Services;
+namespace Antares\Modules\Api\Services;
 
 use Illuminate\Support\Collection;
 use Antares\Model\Component;

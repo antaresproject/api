@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,13 +18,10 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Listener;
 
-
-
-namespace Antares\Api\Listener;
-
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Model\ApiPublicPrivate;
+use Antares\Modules\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Model\ApiPublicPrivate;
 use Antares\Model\Component;
 
 class PublicDriverListener

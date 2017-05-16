@@ -18,7 +18,7 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Model;
+namespace Antares\Modules\Api\Model;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Antares\Model\User as AntaresUser;

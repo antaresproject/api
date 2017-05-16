@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,15 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Middleware;
+namespace Antares\Modules\Api\Http\Middleware;
 
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Http\Request as ApiRequest;
-use Antares\Api\Http\Router\Dispatcher;
+use Antares\Modules\Api\Http\Router\Dispatcher;
 use Illuminate\Routing\Router;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;

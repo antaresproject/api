@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,19 +18,16 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Contracts;
+namespace Antares\Modules\Api\Contracts;
 
 use Illuminate\Http\Response;
 
-interface ResponseContract {
-    
+interface ResponseContract
+{
+
     /**
      * 
      * @return Response
      */
     public function response();
-    
 }

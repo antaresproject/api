@@ -18,10 +18,10 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Contracts;
+namespace Antares\Modules\Api\Contracts;
 
 use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Api\Model\User;
+use Antares\Modules\Api\Model\User;
 
 interface AuthProviderPresenterContract
 {

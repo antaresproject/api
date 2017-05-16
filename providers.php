@@ -1,5 +1,5 @@
 <?php
 
 return [
-    Antares\Api\ApiServiceProvider::class,
+    Antares\Modules\Api\ApiServiceProvider::class,
 ];

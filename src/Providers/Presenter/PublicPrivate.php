@@ -18,14 +18,14 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Providers\Presenter;
+namespace Antares\Modules\Api\Providers\Presenter;
 
-use Antares\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
-use Antares\Api\Providers\PublicPrivate as PublicPrivateProvider;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
+use Antares\Modules\Api\Providers\PublicPrivate as PublicPrivateProvider;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Api\Model\User;
+use Antares\Modules\Api\Model\User;
 
 class PublicPrivate implements AuthProviderPresenterContract
 {

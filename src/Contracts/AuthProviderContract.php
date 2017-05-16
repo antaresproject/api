@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,14 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Contracts;
+namespace Antares\Modules\Api\Contracts;
 
 use Antares\Model\User;
 
-interface AuthProviderContract {
+interface AuthProviderContract
+{
 
     /**
      * @return string
@@ -47,5 +44,4 @@ interface AuthProviderContract {
      * @return boolean
      */
     public function isConfigurablePerUser();
-
 }

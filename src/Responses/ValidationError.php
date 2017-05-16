@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,46 +18,46 @@
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Responses;
+namespace Antares\Modules\Api\Responses;
 
 use Illuminate\Support\ViewErrorBag;
 use Illuminate\Http\Response;
-use Antares\Api\Contracts\ResponseContract;
+use Antares\Modules\Api\Contracts\ResponseContract;
 
-class ValidationError implements ResponseContract {
-    
+class ValidationError implements ResponseContract
+{
+
     /**
      *
      * @var int 
      */
     protected static $statusCode = 400;
-    
+
     /**
      *
      * @var array
      */
     protected $content;
-    
+
     /**
      * 
      * @param ViewErrorBag $errorBag
      */
-    public function __construct(ViewErrorBag $errorBag) {
+    public function __construct(ViewErrorBag $errorBag)
+    {
         $this->content = [
-            'type'      => 'validation error',
-            'fields'    => $errorBag->messages(),
+            'type'   => 'validation error',
+            'fields' => $errorBag->messages(),
         ];
     }
-    
+
     /**
      * 
      * @return Response
      */
-    public function response() {
+    public function response()
+    {
         return new Response($this->content, self::$statusCode);
     }
-    
+
 }

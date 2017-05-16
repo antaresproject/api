@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Providers\Presenter;
+namespace Antares\Modules\Api\Providers\Presenter;
 
-use Antares\Api\Contracts\AuthProviderPresenterContract;
-use Antares\Api\Providers\Jwt as JwtProvider;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Jwt as JwtProvider;
 use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Api\Model\User;
+use Antares\Modules\Api\Model\User;
 use Tymon\JWTAuth\JWTAuth;
 
 class JwtPresenter implements AuthProviderPresenterContract

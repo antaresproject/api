@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Processor;
+namespace Antares\Modules\Api\Processor;
 
-use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
-use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
-use Antares\Api\Http\Presenters\ConfigurationPresenter;
-use Antares\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
+use Antares\Modules\Api\Http\Presenters\ConfigurationPresenter;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Exception;
 use Log;
 

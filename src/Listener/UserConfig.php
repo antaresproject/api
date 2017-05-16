@@ -18,13 +18,13 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Listener;
+namespace Antares\Modules\Api\Listener;
 
-use Antares\Api\Http\Presenters\ConfigurationPresenter;
-use Antares\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Http\Presenters\ConfigurationPresenter;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Illuminate\Database\Eloquent\Model;
 use Antares\Html\Form\Grid as FormGrid;
-use Antares\Api\Providers\AuthProvider;
+use Antares\Modules\Api\Providers\AuthProvider;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
 

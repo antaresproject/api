@@ -18,12 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Http\Controllers\Admin;
+namespace Antares\Modules\Api\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\Api\Processor\ConfigurationProcessor;
-use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
-use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Modules\Api\Processor\ConfigurationProcessor;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
 use Illuminate\Http\Request;
 
 class ConfigurationController extends AdminController implements ConfigurationViewerListener, ConfigurationUpdaterListener

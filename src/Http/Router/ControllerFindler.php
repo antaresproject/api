@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Part of the Antares Project package.
  *
@@ -19,21 +18,20 @@
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Http\Router;
 
+class ControllerFinder
+{
 
-
-namespace Antares\Api\Http\Router;
-
-class ControllerFinder {
-    
     /**
      * 
      * @param string $classPath
      * @param string $method
      * @return boolean
      */
-    public function isActionExists($classPath, $method) {
+    public function isActionExists($classPath, $method)
+    {
         return class_exists($classPath) AND method_exists($classPath, $method);
     }
-    
+
 }
