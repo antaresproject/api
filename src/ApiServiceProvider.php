@@ -34,10 +34,8 @@ use Antares\Modules\Api\Http\Handlers\MenuUser;
 use Antares\Modules\Api\Listener\UserConfig;
 use Antares\Modules\Api\Listener\RoleConfig;
 use Antares\Modules\Api\Model\ApiRoles;
-use Antares\Acl\RoleActionList;
 use Illuminate\Routing\Router;
 use Antares\Model\Role;
-use Antares\Acl\Action;
 use App;
 
 class ApiServiceProvider extends ModuleServiceProvider
@@ -63,10 +61,11 @@ class ApiServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $listen = [
-        'antares.form: user.api'         => [UserConfig::class],
-        'antares.form: role.*'           => [RoleConfig::class],
-        'eloquent.saved: ' . Role::class => 'Antares\Modules\Api\Listener\RoleConfig@onSave',
-        'api.driver.public.update'       => [PublicDriverListener::class]
+        'antares.form: user.api'                     => [UserConfig::class],
+        'antares.form: role.*'                       => [RoleConfig::class],
+        'eloquent.saved: ' . Role::class             => 'Antares\Modules\Api\Listener\RoleConfig@onSave',
+        'api.driver.public.update'                   => [PublicDriverListener::class],
+        'antares.ready: menu.after.general-settings' => \Antares\Modules\Api\Http\Handlers\Menu::class
     ];
 
     /**

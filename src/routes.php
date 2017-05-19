@@ -20,7 +20,6 @@
 use Antares\Routing\Router;
 
 $router->group(['prefix' => 'api'], function (Router $router) {
-
     $router->get('configuration', 'ConfigurationController@index')->name('api.configuration.index');
     $router->post('configuration/update', 'ConfigurationController@update')->name('api.configuration.update');
 

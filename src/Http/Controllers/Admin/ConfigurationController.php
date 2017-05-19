@@ -87,7 +87,7 @@ class ConfigurationController extends AdminController implements ConfigurationVi
     public function updateAuthFailed(array $errors)
     {
         $message = trans('antares/api::response.configuration.update.failed');
-        $url     = handles('api.configuration.index');
+        $url     = handles('antares::api/configuration');
 
         return $this->redirectWithMessage($url, $message, 'error');
     }
@@ -100,7 +100,7 @@ class ConfigurationController extends AdminController implements ConfigurationVi
     public function authUpdated()
     {
         $message = trans('antares/api::response.configuration.update.success');
-        $url     = handles('api.configuration.index');
+        $url     = handles('antares::api/configuration');
 
         return $this->redirectWithMessage($url, $message);
     }

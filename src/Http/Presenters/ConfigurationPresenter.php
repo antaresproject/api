@@ -60,8 +60,7 @@ class ConfigurationPresenter
         $this->breadcrumb->onIndex();
         publish('api', ['js/switcher.js']);
         return $this->formFactory->of('antares.api.configuration.index', function(FormGrid $form) use($authProviderService) {
-                    $url = handles('api.configuration.update');
-
+                    $url = handles('antares::api/configuration/update');
                     $form->name('API Auth Drivers Configuration');
                     $form->simple($url, ['id' => 'api-configuration-form']);
                     $form->layout('antares/api::admin.configuration.form');
