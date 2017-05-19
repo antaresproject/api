@@ -188,7 +188,7 @@ class AuthProviderService
             return $this->cache->get(self::$cacheKey, []);
         }
 
-        $options = Component::findOneByName('api')->options;
+        $options = Component::findOneByName('antaresproject/module-api')->options;
         $drivers = array_get($options, 'auth_drivers');
 
         $this->cache->put(self::$cacheKey, $drivers);
@@ -203,7 +203,7 @@ class AuthProviderService
     {
 
 
-        $component = Component::findOneByName('api');
+        $component = Component::findOneByName('antaresproject/module-api');
         $options   = $component->options;
 
         if (!isset($options['auth_drivers'])) {
