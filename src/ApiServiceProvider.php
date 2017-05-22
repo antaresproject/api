@@ -25,7 +25,7 @@ use Antares\Modules\Api\Http\Presenters\Factory as PresenterFactory;
 use Antares\Modules\Api\Http\Router\Adapter as RouterAdapter;
 use Antares\Users\Http\Handlers\AccountPlaceholder;
 use Antares\Modules\Api\Listener\PublicDriverListener;
-use Antares\Control\Http\Handlers\ControlPane;
+use Antares\Acl\Http\Handlers\ControlPane;
 use Antares\Modules\Api\Http\Middleware\ApiMiddleware;
 use Antares\Modules\Api\Services\AuthProviderService;
 use Antares\Modules\Api\Http\Router\ControllerFinder;

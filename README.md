@@ -1,4 +1,4 @@
-# Antares API Component
+# Antares API Module
 
 [![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-orange.svg)](http://laravel.com)
 [![Coverage Status](https://coveralls.io/repos/github/antaresproject/project/badge.svg?branch=master)](https://coveralls.io/github/antaresproject/project?branch=master)
@@ -11,14 +11,13 @@
 
 ## Documentation
 
-Antares API Component documentation is not finished yet.
+Antares API Module documentation is not finished yet.
 
 Full Antares documentation can be found at [antaresproject.io/docs](http://antaresproject.io/docs).
 
-
 ## Changelog
 
-Antares API Component changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog#api](http://antaresproject.io/docs/site/getting_started/changelog/index.html#api).
+Antares API Module changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog#api](http://antaresproject.io/docs/site/getting_started/changelog/index.html#api).
 
 You can find full Antares changelog in Antares Documentation [antaresproject.io/docs/site/getting_started/changelog](http://antaresproject.io/docs/site/getting_started/changelog/index.html).
 
