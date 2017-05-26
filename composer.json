@@ -1,12 +1,12 @@
 {
     "name": "antaresproject/module-api",
-    "description": "Antares Api Component",
+    "description": "Antares Api Module. Design your application without focus to restfull api driven development. Just create standard Antares application, API layer will be transformed without any interference.",
     "type": "antaresproject-module",
     "version": "0.9.2.1",
     "homepage": "https://github.com/antaresproject/api",
     "authors": [
         {
-            "name": "Marcin Kozak",
+            "name": "Antares Team",
             "email": "contact@antaresproject.io"
         }
     ],
