@@ -115,7 +115,7 @@ class ApiMiddleware
      */
     protected function canHandle(Request $request)
     {
-        $isApiActive = $this->app->make('antares.extension')->isActive('antaresproject/module-api');
+        $isApiActive = $this->app->make('antares.extension')->isActive('api');
 
         return $isApiActive AND $request instanceof ApiRequest;
     }

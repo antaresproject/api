@@ -36,7 +36,7 @@ class PublicDriverListener
     public function handle(array $input = [], AuthProviderService $authProviderService)
     {
 
-        $component = Component::findOneByName('antaresproject/module-api');
+        $component = Component::findOneByName('api');
         $key       = 'auth_drivers.public';
         $enabled   = array_get($component->options, $key);
         $new       = array_get($input, 'drivers.public');

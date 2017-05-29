@@ -9,6 +9,17 @@
 [![GitHub stars](https://img.shields.io/github/stars/antaresproject/project.svg)](https://github.com/antaresproject/project/stargazers)
 [![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/project/master/LICENSE)
 
+Antares API provides set of tools to create RESTful API layer for your application. At this moment, module delivers three authentication drivers: 
+
+- Basic Auth
+- Token (JWT)
+- Public / Private Keys
+
+Works with [APIDOC](http://apidocjs.com/) as a documentation generator.
+
+
+![api](docs/img/api.png)
+
 ## Documentation
 
 Antares API Module documentation is not finished yet.

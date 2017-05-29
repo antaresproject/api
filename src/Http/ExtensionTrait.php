@@ -33,7 +33,7 @@ trait ExtensionTrait
      */
     protected function registerApiRoutes(Container $container, Router $router)
     {
-        if (!$container->make('antares.extension')->isActive('antaresproject/module-api')) {
+        if (!$container->make('antares.extension')->isActive('api')) {
             return false;
         }
 

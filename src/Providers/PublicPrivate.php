@@ -154,7 +154,7 @@ class PublicPrivate extends AuthProvider
      */
     public function getDescription()
     {
-        return 'A keyed-hash message authentication code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. It may be used to simultaneously verify both the data integrity and the authentication of a message, as with any MAC. Any cryptographic hash function, such as MD5 or SHA-1, may be used in the calculation of an HMAC; the resulting MAC algorithm is termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of the HMAC depends upon the cryptographic strength of the underlying hash function, the size of its hash output, and on the size and quality of the key.&nbsp;<span class="label-basic label-basic--success" >STRONG SECURITY</span>';
+        return 'A keyed-hash message authentication code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. It may be used to simultaneously verify both the data integrity and the authentication of a message, as with any MAC.&nbsp;<span class="label-basic label-basic--success" >STRONG SECURITY</span>';
     }
 
 }
