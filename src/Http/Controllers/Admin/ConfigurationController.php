@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,22 +14,20 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Controllers\Admin;
+namespace Antares\Modules\Api\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\Api\Processor\ConfigurationProcessor;
-use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
-use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Modules\Api\Processor\ConfigurationProcessor;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
 use Illuminate\Http\Request;
 
-class ConfigurationController extends AdminController implements ConfigurationViewerListener, ConfigurationUpdaterListener {
+class ConfigurationController extends AdminController implements ConfigurationViewerListener, ConfigurationUpdaterListener
+{
 
     /**
      * @var ConfigurationProcessor
@@ -41,9 +38,10 @@ class ConfigurationController extends AdminController implements ConfigurationVi
      * ConfigurationController constructor.
      * @param ConfigurationProcessor $processor
      */
-    public function __construct(ConfigurationProcessor $processor) {
+    public function __construct(ConfigurationProcessor $processor)
+    {
         parent::__construct();
-        
+
         $this->processor = $processor;
     }
 
@@ -57,11 +55,13 @@ class ConfigurationController extends AdminController implements ConfigurationVi
         $this->middleware('antares.auth');
     }
 
-    public function index() {
+    public function index()
+    {
         return $this->processor->index($this);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         return $this->processor->update($this, $request->all());
     }
 
@@ -78,8 +78,6 @@ class ConfigurationController extends AdminController implements ConfigurationVi
         return view('antares/api::admin.configuration.index', $data);
     }
 
-
-
     /**
      * Response when updating auth driver failed.
      *
@@ -88,9 +86,9 @@ class ConfigurationController extends AdminController implements ConfigurationVi
      */
     public function updateAuthFailed(array $errors)
     {
-        $message    = trans('antares/api::response.configuration.update.failed');
-        $url        = route('admin.api.configuration.index');
-        
+        $message = trans('antares/api::response.configuration.update.failed');
+        $url     = handles('antares::api/configuration');
+
         return $this->redirectWithMessage($url, $message, 'error');
     }
 
@@ -101,8 +99,8 @@ class ConfigurationController extends AdminController implements ConfigurationVi
      */
     public function authUpdated()
     {
-        $message    = trans('antares/api::response.configuration.update.success');
-        $url        = route('admin.api.configuration.index');
+        $message = trans('antares/api::response.configuration.update.success');
+        $url     = handles('antares::api/configuration');
 
         return $this->redirectWithMessage($url, $message);
     }

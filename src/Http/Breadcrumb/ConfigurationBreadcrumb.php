@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,14 +14,11 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Breadcrumb;
+namespace Antares\Modules\Api\Http\Breadcrumb;
 
 use Antares\Breadcrumb\Navigation;
 
@@ -47,12 +43,26 @@ class ConfigurationBreadcrumb extends Navigation
         $this->shareOnView(self::$name);
     }
 
+    /**
+     * Shows breadrcumb on user config
+     */
     public function onUserConfig()
     {
         $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
             $breadcrumbs->push('Api');
         });
 
+        $this->shareOnView(self::$name);
+    }
+
+    /**
+     * Shows breadrcumb on api logs
+     */
+    public function onApiLogs()
+    {
+        $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
+            $breadcrumbs->push(trans('antares/api::title.api_log'));
+        });
         $this->shareOnView(self::$name);
     }
 

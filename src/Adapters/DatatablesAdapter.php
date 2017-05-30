@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,20 +14,17 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Adapters;
+namespace Antares\Modules\Api\Adapters;
 
 use Antares\Datatables\Contracts\DatatablesRawDataContract;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Antares\Api\Adapter;
+use Antares\Modules\Api\Adapter;
 
 class DatatablesAdapter extends Adapter
 {

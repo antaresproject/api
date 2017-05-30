@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,19 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Processor;
 
-
-
-namespace Antares\Api\Processor;
-
-use Antares\Api\Http\Presenters\ConfigurationPresenter;
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
-use Antares\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Updater as ConfigurationUpdaterListener;
+use Antares\Modules\Api\Contracts\Listeners\Configuration\Viewer as ConfigurationViewerListener;
+use Antares\Modules\Api\Http\Presenters\ConfigurationPresenter;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Exception;
 use Log;
 
@@ -81,6 +77,7 @@ class ConfigurationProcessor
     public function update(ConfigurationUpdaterListener $listener, array $input)
     {
         try {
+
             foreach (array_get($input, 'drivers', []) as $driver => $config) {
                 $this->authProviderService->updateDriver($driver, $config);
                 event('api.driver.' . $driver . '.update', [$input, $this->authProviderService]);

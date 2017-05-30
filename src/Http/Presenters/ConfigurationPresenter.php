@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,18 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Http\Presenters;
 
-
-
-namespace Antares\Api\Http\Presenters;
-
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Contracts\AuthProviderContract;
-use Antares\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
+use Antares\Modules\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Contracts\AuthProviderContract;
+use Antares\Modules\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
 use Antares\Contracts\Html\Form\Factory as FormFactory;
 use Antares\Contracts\Html\Form\Fieldset;
 use Antares\Contracts\Html\Form\Grid as FormGrid;
@@ -64,8 +60,7 @@ class ConfigurationPresenter
         $this->breadcrumb->onIndex();
         publish('api', ['js/switcher.js']);
         return $this->formFactory->of('antares.api.configuration.index', function(FormGrid $form) use($authProviderService) {
-                    $url = route('admin.api.configuration.update');
-
+                    $url = handles('antares::api/configuration/update');
                     $form->name('API Auth Drivers Configuration');
                     $form->simple($url, ['id' => 'api-configuration-form']);
                     $form->layout('antares/api::admin.configuration.form');

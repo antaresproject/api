@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,13 +14,9 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
-
-
-
-
 return [
     /**
      * default pagination configuration
@@ -31,8 +26,8 @@ return [
         'page_name' => 'page'
     ],
     'adapters'                 => [
-        'datatables' => \Antares\Api\Adapters\DatatablesAdapter::class,
-        'form'       => \Antares\Api\Adapters\FormAdapter::class,
+        'datatables' => \Antares\Modules\Api\Adapters\DatatablesAdapter::class,
+        'form'       => \Antares\Modules\Api\Adapters\FormAdapter::class,
     ],
     'maps'                     => [
         \Antares\Datatables\Html\Builder::class => 'datatables',
@@ -41,9 +36,9 @@ return [
     ],
     'auth'                     => [
         'drivers' => [
-            \Antares\Api\Providers\Basic::class,
-            \Antares\Api\Providers\Jwt::class,
-            \Antares\Api\Providers\PublicPrivate::class,
+            \Antares\Modules\Api\Providers\Basic::class,
+            \Antares\Modules\Api\Providers\Jwt::class,
+            \Antares\Modules\Api\Providers\PublicPrivate::class,
         ],
     ],
     'whitelist_required_areas' => [

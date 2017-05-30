@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,17 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Providers\Presenter\Basic as BasicPresenter;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Presenter\Basic as BasicPresenter;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Auth as DingoAuth;
 
@@ -73,7 +69,7 @@ class Basic extends AuthProvider
     {
         $this->container->make(DingoAuth\Auth::class)->extend('basic', function($app) {
             $app['auth.loaded'] = true;
-            return new DingoAuth\Provider\Basic(new \Antares\Api\Providers\Auth\Basic($app));
+            return new DingoAuth\Provider\Basic(new \Antares\Modules\Api\Providers\Auth\Basic($app));
         });
     }
 

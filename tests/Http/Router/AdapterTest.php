@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,202 +14,213 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Tests\Http\Router;
+namespace Antares\Modules\Api\Tests\Http\Router;
 
 use Mockery as m;
 use Dingo\Api\Provider\LaravelServiceProvider;
-use Antares\Api\Http\Router\Adapter;
+use Antares\Modules\Api\Http\Router\Adapter;
 use Antares\Testing\TestCase;
 use Dingo\Api\Routing\Router as ApiRouter;
-use Antares\Api\Http\Router\ControllerFinder;
+use Antares\Modules\Api\Http\Router\ControllerFinder;
 use Illuminate\Routing\Route;
 use ReflectionClass;
 
-class AdapterTest extends TestCase {
-    
+class AdapterTest extends TestCase
+{
+
     /**
      *
      * @var ApiRouter
      */
     protected $apiRouter;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $controllerFinder;
-    
+
     /**
      *
      * @var Mockery
      */
     protected $route;
-    
+
     /**
      *
      * @var array
      */
     protected $config = ['version' => 'v1'];
-    
-    public function setUp() {
+
+    public function setUp()
+    {
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
         $this->addProvider(LaravelServiceProvider::class);
-        
+
         parent::setUp();
-        
+
         $this->apiRouter        = $this->app->make(ApiRouter::class);
         $this->controllerFinder = m::mock(ControllerFinder::class)
                 ->shouldReceive('isActionExists')
                 ->andReturn(false)
                 ->getMock();
-        
+
         $this->route = m::mock(Route::class)
                 ->shouldReceive('getMethods')
                 ->andReturn(['HEAD', 'GET'])
                 ->getMock();
     }
-    
-    public function tearDown() {
+
+    public function tearDown()
+    {
         parent::tearDown();
         m::close();
     }
-    
+
     /**
      * 
      * @return Adapter
      */
-    protected function getAdapter() {
-        return new Adapter($this->apiRouter, $this->controllerFinder, $this->config);
+    protected function getAdapter()
+    {
+        $adapter = new Adapter($this->apiRouter, $this->controllerFinder, $this->config);
+        $adapter->setVersion('v1');
+        return $adapter;
     }
-    
-    public function testConfigVersionFallback() {
+
+    public function testConfigVersionFallback()
+    {
         $this->config = [];
-        $adapter = $this->getAdapter();
-        
+        $adapter      = $this->getAdapter();
         $this->assertEquals('v1', $adapter->getVersion());
     }
-    
-    public function testSetVersion() {
+
+    public function testSetVersion()
+    {
         $adapter = $this->getAdapter();
         $this->assertEquals('v1', $adapter->getVersion());
-        
+
         $adapter->setVersion('v2');
         $this->assertEquals('v2', $adapter->getVersion());
     }
-    
-    public function testGetApiRouter() {
+
+    public function testGetApiRouter()
+    {
         $adapter = $this->getAdapter();
-        
+
         $this->assertInstanceOf(ApiRouter::class, $adapter->getApiRouter());
     }
-    
-    public function testGetRouteTargetAction() {
+
+    public function testGetRouteTargetAction()
+    {
         $reflectionClass = new ReflectionClass(Adapter::class);
-        $method = $reflectionClass->getMethod('getRouteTargetAction');
+        $method          = $reflectionClass->getMethod('getRouteTargetAction');
         $method->setAccessible(true);
-        
+
         $action = [
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'namespace'     => 'App\Http\Admin',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'namespace'  => 'App\Http\Admin',
         ];
-        
+
         $this->route
                 ->shouldReceive('getAction')
                 ->andReturn($action)
                 ->getMock();
-        
+
         $targetAction = $method->invoke($this->getAdapter(), $this->route);
-        
+
         $expected = [
-            'uses'          => 'TestController@index',
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'middleware'    => 'api',
+            'uses'       => 'TestController@index',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'middleware' => 'api',
         ];
-        
+
         $this->assertEquals($expected, $targetAction);
     }
-    
-    public function testGetRouteTargetActionWithAsParameter() {
+
+    public function testGetRouteTargetActionWithAsParameter()
+    {
         $reflectionClass = new ReflectionClass(Adapter::class);
-        $method = $reflectionClass->getMethod('getRouteTargetAction');
+        $method          = $reflectionClass->getMethod('getRouteTargetAction');
         $method->setAccessible(true);
-        
+
         $action = [
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'namespace'     => 'App\Http\Admin',
-            'as'            => 'admin.test.index',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'namespace'  => 'App\Http\Admin',
+            'as'         => 'admin.test.index',
         ];
-        
+
         $this->route
                 ->shouldReceive('getAction')
                 ->andReturn($action)
                 ->getMock();
-        
+
         $targetAction = $method->invoke($this->getAdapter(), $this->route);
-        
+
         $expected = [
-            'as'            => 'api.admin.test.index',
-            'uses'          => 'TestController@index',
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'middleware'    => 'api',
+            'as'         => 'api.admin.test.index',
+            'uses'       => 'TestController@index',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'middleware' => 'api',
         ];
-        
+
         $this->assertEquals($expected, $targetAction);
     }
-    
-    public function testAdaptRoute() {
+
+    public function testAdaptRoute()
+    {
+
         $action = [
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'namespace'     => 'App\Http\Admin',
-            'as'            => 'admin.test.index',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'namespace'  => 'App\Http\Admin',
+            'as'         => 'antares.test.index',
+            'version'    => 'v1',
         ];
-        
-        $uri        = 'admin/test/index';
-        $adapter    = $this->getAdapter();
-        
+
+        $uri     = 'antares/test/index';
+        $adapter = $this->getAdapter();
+        $adapter->setVersion('v1');
+
         $this->route
                 ->shouldReceive('getAction')
                 ->andReturn($action)
                 ->shouldReceive('getUri')
                 ->andReturn($uri)
                 ->getMock();
-        
+
         $adapter->adaptRoute($this->route);
-        
-        $this->assertCount(1, $adapter->getApiRouter()->getAdapterRoutes());
+        $this->assertCount(2, $adapter->getApiRouter()->getAdapterRoutes());
     }
-    
-    public function testAdaptRoutes() {
+
+    public function testAdaptRoutes()
+    {
         $action = [
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'namespace'     => 'App\Http\Admin',
-            'as'            => 'admin.test.index',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'namespace'  => 'App\Http\Admin',
+            'as'         => 'admin.test.index',
         ];
-        
+
         $secondAction = [
-            'controller'    => 'App\Http\Admin\TestController@show',
-            'namespace'     => 'App\Http\Admin',
-            'as'            => 'admin.test.show',
+            'controller' => 'App\Http\Admin\TestController@show',
+            'namespace'  => 'App\Http\Admin',
+            'as'         => 'admin.test.show',
         ];
-        
-        $uri        = 'admin/test/index';
-        $secondUri  = 'admin/test/show';
-        $adapter    = $this->getAdapter();
-        
+
+        $uri       = 'admin/test/index';
+        $secondUri = 'admin/test/show';
+        $adapter   = $this->getAdapter();
+
         $this->route
                 ->shouldReceive('getAction')
                 ->andReturn($action)
                 ->shouldReceive('getUri')
                 ->andReturn($uri)
                 ->getMock();
-        
+
         $secondRoute = clone $this->route;
         $secondRoute
                 ->shouldReceive('getAction')
@@ -218,41 +228,42 @@ class AdapterTest extends TestCase {
                 ->shouldReceive('getUri')
                 ->andReturn($secondUri)
                 ->getMock();
-        
+
         $routes = [$this->route, $secondRoute];
-        
+
         $adapter->adaptRoutes($routes);
     }
-    
-    public function testFindDedicatedController() {
+
+    public function testFindDedicatedController()
+    {
         $reflectionClass = new ReflectionClass(Adapter::class);
-        $method = $reflectionClass->getMethod('getRouteTargetAction');
+        $method          = $reflectionClass->getMethod('getRouteTargetAction');
         $method->setAccessible(true);
-        
+
         $action = [
-            'controller'    => 'App\Http\Admin\TestController@index',
-            'namespace'     => 'App\Http\Admin',
+            'controller' => 'App\Http\Admin\TestController@index',
+            'namespace'  => 'App\Http\Admin',
         ];
-        
+
         $this->route
                 ->shouldReceive('getAction')
                 ->andReturn($action)
                 ->getMock();
-        
+
         $this->controllerFinder = m::mock(ControllerFinder::class)
                 ->shouldReceive('isActionExists')
                 ->andReturn(true)
                 ->getMock();
-        
+
         $targetAction = $method->invoke($this->getAdapter(), $this->route);
-        
+
         $expected = [
-            'uses'          => 'TestController@index',
-            'controller'    => 'App\Http\Admin\Api\V1\TestController@index',
-            'middleware'    => 'api',
+            'uses'       => 'TestController@index',
+            'controller' => 'App\Http\Admin\Api\V1\TestController@index',
+            'middleware' => 'api',
         ];
-        
+
         $this->assertEquals($expected, $targetAction);
     }
-    
+
 }

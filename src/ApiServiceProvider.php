@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,33 +14,28 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api;
+namespace Antares\Modules\Api;
 
 use Antares\Foundation\Support\Providers\ModuleServiceProvider;
-use Antares\Api\Http\Presenters\Factory as PresenterFactory;
-use Antares\Api\Http\Router\Adapter as RouterAdapter;
+use Antares\Modules\Api\Http\Presenters\Factory as PresenterFactory;
+use Antares\Modules\Api\Http\Router\Adapter as RouterAdapter;
 use Antares\Users\Http\Handlers\AccountPlaceholder;
-use Antares\Api\Listener\PublicDriverListener;
-use Antares\Control\Http\Handlers\ControlPane;
-use Antares\Api\Http\Middleware\ApiMiddleware;
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Http\Router\ControllerFinder;
+use Antares\Modules\Api\Listener\PublicDriverListener;
+use Antares\Acl\Http\Handlers\ControlPane;
+use Antares\Modules\Api\Http\Middleware\ApiMiddleware;
+use Antares\Modules\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Http\Router\ControllerFinder;
 use Dingo\Api\Routing\Router as ApiRouter;
-use Antares\Api\Listener\UserConfig;
-use Antares\Api\Listener\RoleConfig;
-use Antares\Api\Http\Handlers\MenuUser;
-use Antares\Api\Model\ApiRoles;
-use Antares\Acl\RoleActionList;
+use Antares\Modules\Api\Http\Handlers\MenuUser;
+use Antares\Modules\Api\Listener\UserConfig;
+use Antares\Modules\Api\Listener\RoleConfig;
+use Antares\Modules\Api\Model\ApiRoles;
 use Illuminate\Routing\Router;
 use Antares\Model\Role;
-use Antares\Acl\Action;
 use App;
 
 class ApiServiceProvider extends ModuleServiceProvider
@@ -52,7 +46,7 @@ class ApiServiceProvider extends ModuleServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'Antares\Api\Http\Controllers\Admin';
+    protected $namespace = 'Antares\Modules\Api\Http\Controllers\Admin';
 
     /**
      * The application or extension group namespace.
@@ -67,10 +61,11 @@ class ApiServiceProvider extends ModuleServiceProvider
      * @var array
      */
     protected $listen = [
-        'antares.form: user.api'         => [UserConfig::class],
-        'antares.form: role.*'           => [RoleConfig::class],
-        'eloquent.saved: ' . Role::class => 'Antares\Api\Listener\RoleConfig@onSave',
-        'api.driver.public.update'       => [PublicDriverListener::class]
+        'antares.form: user.api'                     => [UserConfig::class],
+        'antares.form: role.*'                       => [RoleConfig::class],
+        'eloquent.saved: ' . Role::class             => 'Antares\Modules\Api\Listener\RoleConfig@onSave',
+        'api.driver.public.update'                   => [PublicDriverListener::class],
+        'antares.ready: menu.after.general-settings' => \Antares\Modules\Api\Http\Handlers\Menu::class
     ];
 
     /**
@@ -95,13 +90,11 @@ class ApiServiceProvider extends ModuleServiceProvider
 
     /**
      * Boots service provider
-     * 
-     * @param Router $router
      */
-    public function boot(Router $router)
+    public function boot()
     {
-
-        parent::boot($router);
+        parent::boot();
+        $router = $this->app->make(Router::class);
 
 
         $this->app->bind(RouterAdapter::class, function($app) {
@@ -129,22 +122,6 @@ class ApiServiceProvider extends ModuleServiceProvider
         foreach ($authProviderService->getEnabledDrivers() as $driver) {
             $driver->registerAuth();
         }
-    }
-
-    /**
-     * @return RoleActionList
-     */
-    public static function acl()
-    {
-        $actions = [
-            new Action('admin.api.configuration.*', 'Configuration'),
-            new Action('api.*', 'Can Use Api'),
-        ];
-
-        $permissions = new RoleActionList;
-        $permissions->add(Role::admin()->name, $actions);
-
-        return $permissions;
     }
 
 }

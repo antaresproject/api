@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -14,11 +14,11 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Api\Services;
+namespace Antares\Modules\Api\Services;
 
 use Illuminate\Support\Collection;
 use Antares\Model\Component;
@@ -187,8 +187,8 @@ class AuthProviderService
         if ($this->cache->has(self::$cacheKey)) {
             return $this->cache->get(self::$cacheKey, []);
         }
-
         $options = Component::findOneByName('api')->options;
+
         $drivers = array_get($options, 'auth_drivers');
 
         $this->cache->put(self::$cacheKey, $drivers);
@@ -201,9 +201,7 @@ class AuthProviderService
      */
     public function save()
     {
-        if (count($this->driversToUpdate) === 0) {
-            return;
-        }
+
 
         $component = Component::findOneByName('api');
         $options   = $component->options;

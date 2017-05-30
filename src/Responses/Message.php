@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,54 +14,54 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Responses;
+namespace Antares\Modules\Api\Responses;
 
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Response;
-use Antares\Api\Contracts\ResponseContract;
+use Antares\Modules\Api\Contracts\ResponseContract;
 
-class Message implements ResponseContract {
-    
+class Message implements ResponseContract
+{
+
     /**
      *
      * @var int
      */
     protected $statusCode;
-    
+
     /**
      *
      * @var array
      */
     protected $content;
-    
+
     /**
      * 
      * @param MessageBag $messageBag
      * @param int $statusCode (default 200)
      */
-    public function __construct(MessageBag $messageBag, $statusCode = 200) {
+    public function __construct(MessageBag $messageBag, $statusCode = 200)
+    {
         $this->statusCode = $statusCode;
-        
+
         $this->content = [
-            'type'      => 'message',
-            'statuses'  => $messageBag->keys(),
-            'messages'  => $messageBag->messages(),
+            'type'     => 'message',
+            'statuses' => $messageBag->keys(),
+            'messages' => $messageBag->messages(),
         ];
     }
-    
+
     /**
      * 
      * @return Response
      */
-    public function response() {
+    public function response()
+    {
         return new Response($this->content, $this->statusCode);
     }
-    
+
 }

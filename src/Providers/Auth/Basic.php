@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,18 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Providers\Auth;
+namespace Antares\Modules\Api\Providers\Auth;
 
 use Antares\Auth\AuthManager as BaseAuthManager;
 use Dingo\Api\Http\Request;
-use Antares\Api\Autoban;
+use Antares\Modules\Api\Autoban;
 
 class Basic extends BaseAuthManager
 {
@@ -40,9 +36,9 @@ class Basic extends BaseAuthManager
     public function onceBasic($identifier)
     {
         $response = parent::onceBasic($identifier);
-        if (!$this->isValid($response)) {
-            app(Autoban::class)->delay();
-        }
+//        if (!$this->isValid($response)) {
+//            app(Autoban::class)->delay();
+//        }
         return $response;
     }
 

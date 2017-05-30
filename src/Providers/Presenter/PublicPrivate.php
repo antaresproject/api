@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,21 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers\Presenter;
 
-
-
-namespace Antares\Api\Providers\Presenter;
-
-use Antares\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
-use Antares\Api\Providers\PublicPrivate as PublicPrivateProvider;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
+use Antares\Modules\Api\Providers\PublicPrivate as PublicPrivateProvider;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Antares\Contracts\Html\Form\Fieldset;
-use Antares\Model\User;
+use Antares\Modules\Api\Model\User;
 
 class PublicPrivate implements AuthProviderPresenterContract
 {

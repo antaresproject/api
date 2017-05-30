@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,17 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Contracts\AuthProviderPresenterContract;
-use Antares\Api\Providers\Presenter\JwtPresenter;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Presenter\JwtPresenter;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Auth as DingoAuth;
 
@@ -71,7 +67,7 @@ class Jwt extends AuthProvider
     public function registerAuth()
     {
         $this->container->make(DingoAuth\Auth::class)->extend('jwt', function($app) {
-            return new DingoAuth\Provider\JWT($app[\Antares\Api\Providers\Auth\JWT::class]);
+            return new DingoAuth\Provider\JWT($app[\Antares\Modules\Api\Providers\Auth\JWT::class]);
         });
     }
 
@@ -126,7 +122,7 @@ class Jwt extends AuthProvider
      */
     public function getDescription()
     {
-        return 'JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA.&nbsp;<span class="label-basic label-basic--success">RECOMMENDED</span>';
+        return 'JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.&nbsp;<span class="label-basic label-basic--success">RECOMMENDED</span>';
     }
 
 }

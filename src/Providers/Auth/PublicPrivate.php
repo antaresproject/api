@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,21 +14,18 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Providers\Auth;
+namespace Antares\Modules\Api\Providers\Auth;
 
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Dingo\Api\Auth\Provider\Authorization;
-use Antares\Api\Model\ApiPublicPrivate;
+use Antares\Modules\Api\Model\ApiPublicPrivate;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Route;
-use Antares\Api\Autoban;
+use Antares\Modules\Api\Autoban;
 use Antares\Model\User;
 use Exception;
 

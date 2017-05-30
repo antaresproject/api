@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,14 +14,11 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Listener;
+namespace Antares\Modules\Api\Listener;
 
 use Antares\Html\Form\Grid as FormGrid;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +26,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
-use Antares\Api\Model\ApiRoles;
+use Antares\Modules\Api\Model\ApiRoles;
 use Exception;
 
 class RoleConfig
@@ -41,8 +37,10 @@ class RoleConfig
      *
      * @param FormBuilder $form
      */
-    public function handle(Model $model, FormBuilder $form)
+    public function handle($name, array $params = [])
     {
+        $model = $params[0];
+        $form  = $params[1];
         $form->extend(function(FormGrid $grid) use($model) {
             $grid->fieldset('api_configuration', function (Fieldset $fieldset) use($model) {
                 $fieldset->legend(trans('antares/api::labels.api_configuration'));

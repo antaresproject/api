@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,19 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers\Presenter;
 
-
-
-namespace Antares\Api\Providers\Presenter;
-
-use Antares\Api\Contracts\AuthProviderPresenterContract;
-use Antares\Model\User;
-use Antares\Api\Providers\Jwt as JwtProvider;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Jwt as JwtProvider;
 use Antares\Contracts\Html\Form\Fieldset;
+use Antares\Modules\Api\Model\User;
 use Tymon\JWTAuth\JWTAuth;
 
 class JwtPresenter implements AuthProviderPresenterContract

@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,14 +14,11 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Handlers;
+namespace Antares\Modules\Api\Http\Handlers;
 
 use Antares\Foundation\Support\MenuHandler;
 use Antares\Contracts\Auth\Guard;
@@ -58,7 +54,7 @@ class ApiLogsMenuHandler extends MenuHandler
     public function getTitleAttribute()
     {
 
-        return trans('antares/api::title.api_logs');
+        return trans('antares/api::title.api_log');
     }
 
     /**

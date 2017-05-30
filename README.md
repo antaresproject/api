@@ -1,36 +1,57 @@
-# Antares Project API Component
+# Antares API Module
 
-An open source package by [Antares Project](http://antaresproject.io), code well, rock on!
+[![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-orange.svg)](http://laravel.com)
+[![Coverage Status](https://coveralls.io/repos/github/antaresproject/project/badge.svg?branch=master)](https://coveralls.io/github/antaresproject/project?branch=master)
+[![Build Status](https://travis-ci.org/antaresproject/project.svg?branch=master)](https://travis-ci.org/antaresproject/project)
+[![Code Climate](https://codeclimate.com/github/antaresproject/project/badges/gpa.svg)](https://codeclimate.com/github/antaresproject/project)
+[![GitHub issues](https://img.shields.io/github/issues/antaresproject/project.svg)](https://github.com/antaresproject/project/issues)
+[![GitHub forks](https://img.shields.io/github/forks/antaresproject/project.svg)](https://github.com/antaresproject/project/network)
+[![GitHub stars](https://img.shields.io/github/stars/antaresproject/project.svg)](https://github.com/antaresproject/project/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-New%20BSD-blue.svg)](https://raw.githubusercontent.com/antaresproject/project/master/LICENSE)
+
+Antares API provides set of tools to create RESTful API layer for your application. At this moment, module delivers three authentication drivers: 
+
+- Basic Auth
+- Token (JWT)
+- Public / Private Keys
+
+Works with [APIDOC](http://apidocjs.com/) as a documentation generator.
+
+
+![api](docs/img/api.png)
 
 ## Documentation
 
-Reader-friendly Documentation can be found here. [Antares Project Documenation](http://antaresproject.io).
+Antares API Module documentation is not finished yet.
 
-Raw files can be found via this projects docs/version branch.
+Full Antares documentation can be found at [antaresproject.io/docs](http://antaresproject.io/docs).
 
-- [0.9.0](https://github.com/antaresproject/docs)
+## Changelog
 
-## Change Log
+Antares API Module changelog can be found in release notes [antaresproject.io/docs/site/getting_started/changelog#api](http://antaresproject.io/docs/site/getting_started/changelog/index.html#api).
 
-Important versions listed below. Refer to the [Change Log](CHANGELOG.md) for a full history of the project.
+You can find full Antares changelog in Antares Documentation [antaresproject.io/docs/site/getting_started/changelog](http://antaresproject.io/docs/site/getting_started/changelog/index.html).
 
-## Support
+## Issues
 
-The following support channels can be used for contact.
+The issue list of this repo is **exclusively** for bug reports and feature requests.
 
-- [Webpage](http://antaresproject.io)
-- [Email](mailto:contact@antaresproject.io)
+Please follow [Issue Reporting Guide](http://antaresproject.io/docs/site/getting_started/issues_reporting_guide/index.html) before opening an issue. Issues not following the guide will be closed without further investigation.
 
-Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
+## Contribution
 
-## Contributing & Protocols
+Please follow [Contribution Guide](http://antaresproject.io/docs/site/getting_started/contributing/index.html) before making a pull request.
 
-- [Versioning](CONTRIBUTING.md#versioning)
-- [Coding Standards](CONTRIBUTING.md#coding-standards)
-- [Pull Requests](CONTRIBUTING.md#pull-requests)
+## Community
+
+* Twitter: @antaresproject
+* Forum: (coming soon)
+* Blog: (coming soon)
+* Email: contact (at) antaresproject.io
+
 
 ## License
 
-This software is released under the [BSD 3-Clause](LICENSE) License.
+This software is released under the BSD 3-Clause License.
 
-© 2017 Antares Project, All rights reserved.
+© 2017 INBS.Software.

@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,18 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Providers\Auth;
+namespace Antares\Modules\Api\Providers\Auth;
 
 use Tymon\JWTAuth\JWTAuth as BaseJWTAuth;
 use Dingo\Api\Http\Request;
-use Antares\Api\Autoban;
+use Antares\Modules\Api\Autoban;
 use Exception;
 
 class JWT extends BaseJWTAuth
@@ -35,11 +31,11 @@ class JWT extends BaseJWTAuth
     /**
      * {@inheritdoc}
      */
-    public function authenticate()
+    public function authenticate($token = false)
     {
         $autoban = app(Autoban::class);
         try {
-            $authenticated = parent::authenticate();
+            $authenticated = parent::authenticate($token);
         } catch (Exception $ex) {
             if (!$this->isValid()) {
                 $autoban->delay();

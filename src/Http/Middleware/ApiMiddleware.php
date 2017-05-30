@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,19 +14,16 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Middleware;
+namespace Antares\Modules\Api\Http\Middleware;
 
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\Container\Container;
 use Dingo\Api\Http\Request as ApiRequest;
-use Antares\Api\Http\Router\Dispatcher;
+use Antares\Modules\Api\Http\Router\Dispatcher;
 use Illuminate\Routing\Router;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;

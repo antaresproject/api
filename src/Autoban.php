@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,17 +14,14 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api;
 
-
-
-namespace Antares\Api;
-
-use Antares\Api\Services\AuthProviderService;
-use Antares\Api\Model\ApiUsers;
+use Antares\Modules\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Model\ApiUsers;
 use Antares\Model\User;
 use Exception;
 

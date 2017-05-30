@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,16 +14,13 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Http\Handlers;
 
-
-
-namespace Antares\Api\Http\Handlers;
-
-use Antares\Api\Services\AuthProviderService;
+use Antares\Modules\Api\Services\AuthProviderService;
 use Antares\Foundation\Support\MenuHandler;
 use Antares\Contracts\Auth\Guard;
 
@@ -73,20 +69,7 @@ class Menu extends MenuHandler
      */
     public function authorize(Guard $auth)
     {
-        $service = app(AuthProviderService::class);
-        $areas   = array_keys(config('areas.areas'));
-        $drivers = app(AuthProviderService::class)->getAvailableDrivers();
-        $enabled = false;
-        foreach ($drivers as $driver => $instance) {
-            foreach ($areas as $name) {
-                if ($service->isDriverEnabledForArea($driver, $name)) {
-                    $enabled = true;
-                    break;
-                }
-            }
-        }
-
-        return $enabled && app('antares.acl')->make('antares/api')->can('configuration');
+        return app('antares.acl')->make('antares/api')->can('configuration');
     }
 
 }

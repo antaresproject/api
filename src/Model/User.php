@@ -18,16 +18,12 @@
  * @link       http://antaresproject.io
  */
 
-namespace Antares\Modules\Api\Contracts;
+namespace Antares\Modules\Api\Model;
 
-use Illuminate\Http\Response;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Antares\Model\User as AntaresUser;
 
-interface ResponseContract
+class User extends AntaresUser implements JWTSubject
 {
-
-    /**
-     * 
-     * @return Response
-     */
-    public function response();
+    
 }

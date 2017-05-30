@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,17 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Controllers\Admin;
+namespace Antares\Modules\Api\Http\Controllers\Admin;
 
 use Antares\Foundation\Http\Controllers\AdminController;
-use Antares\Api\Http\Datatable\Logs;
+use Antares\Modules\Api\Http\Breadcrumb\ConfigurationBreadcrumb;
+use Antares\Modules\Api\Http\Datatable\Logs;
 
 class LogsController extends AdminController
 {
@@ -44,10 +41,12 @@ class LogsController extends AdminController
      * Shows Api Logs
      * 
      * @param Logs $datatable
+     * @param ConfigurationBreadcrumb $breadcrumb
      * @return \Illuminate\View\View
      */
-    public function index(Logs $datatable)
+    public function index(Logs $datatable, ConfigurationBreadcrumb $breadcrumb)
     {
+        $breadcrumb->onApiLogs();
         return $datatable->render('antares/api::admin.logs.index');
     }
 

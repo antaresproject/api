@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,18 +14,15 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
+namespace Antares\Modules\Api\Providers;
 
-
-
-namespace Antares\Api\Providers;
-
-use Antares\Api\Providers\Presenter\PublicPrivate as PublicPrivatePresenter;
-use Antares\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
-use Antares\Api\Contracts\AuthProviderPresenterContract;
+use Antares\Modules\Api\Providers\Presenter\PublicPrivate as PublicPrivatePresenter;
+use Antares\Modules\Api\Providers\Auth\PublicPrivate as PublicPrivateAuth;
+use Antares\Modules\Api\Contracts\AuthProviderPresenterContract;
 use Illuminate\Contracts\Container\Container;
 use Tymon\JWTAuth\Contracts\Providers\Auth;
 use Dingo\Api\Auth as DingoAuth;
@@ -158,7 +154,7 @@ class PublicPrivate extends AuthProvider
      */
     public function getDescription()
     {
-        return 'A keyed-hash message authentication code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. It may be used to simultaneously verify both the data integrity and the authentication of a message, as with any MAC. Any cryptographic hash function, such as MD5 or SHA-1, may be used in the calculation of an HMAC; the resulting MAC algorithm is termed HMAC-MD5 or HMAC-SHA1 accordingly. The cryptographic strength of the HMAC depends upon the cryptographic strength of the underlying hash function, the size of its hash output, and on the size and quality of the key.&nbsp;<span class="label-basic label-basic--success" >STRONG SECURITY</span>';
+        return 'A keyed-hash message authentication code (HMAC) is a specific type of message authentication code (MAC) involving a cryptographic hash function and a secret cryptographic key. It may be used to simultaneously verify both the data integrity and the authentication of a message, as with any MAC.&nbsp;<span class="label-basic label-basic--success" >STRONG SECURITY</span>';
     }
 
 }

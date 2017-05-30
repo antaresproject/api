@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,16 +14,12 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
-
-
-
-
 return [
     'configuration'        => 'API',
     'auth_drivers'         => 'Authentication Drivers',
     'enabled_auth_drivers' => 'Enabled API Authentication Drivers',
-    'api_logs'             => 'Api Logs'
+    'api_log'              => 'API Log'
 ];

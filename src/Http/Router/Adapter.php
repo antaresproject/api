@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Part of the Antares Project package.
+ * Part of the Antares package.
  *
  * NOTICE OF LICENSE
  *
@@ -15,14 +14,11 @@
  * @version    0.9.0
  * @author     Antares Team
  * @license    BSD License (3-clause)
- * @copyright  (c) 2017, Antares Project
+ * @copyright  (c) 2017, Antares
  * @link       http://antaresproject.io
  */
 
-
-
-
-namespace Antares\Api\Http\Router;
+namespace Antares\Modules\Api\Http\Router;
 
 use Dingo\Api\Routing\Router as ApiRouter;
 use Illuminate\Support\Facades\Request;
@@ -53,7 +49,7 @@ class Adapter
      * constructing
      * 
      * @param ApiRouter $apiRouter
-     * @param \Antares\Api\Http\Router\ControllerFinder $finder
+     * @param \Antares\Modules\Api\Http\Router\ControllerFinder $finder
      */
     public function __construct(ApiRouter $apiRouter, ControllerFinder $finder)
     {
@@ -106,8 +102,10 @@ class Adapter
      */
     public function adaptRoute(Route $route, $namespace = null)
     {
+
         $middleware = array_merge(['api.throttle', 'api.auth',], array_get($route->getAction(), 'middleware', []));
         $attributes = array_merge(compact('middleware', 'namespace'), config('api.throttling', []));
+
 
         $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($route) {
             $targetAction = $this->getRouteTargetAction($route);
