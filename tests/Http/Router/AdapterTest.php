@@ -75,12 +75,6 @@ class AdapterTest extends TestCase
                 ->getMock();
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     /**
      * 
      * @return Adapter

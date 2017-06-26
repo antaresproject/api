@@ -58,12 +58,6 @@ class ResponseTest extends TestCase
         $this->presenterFactory = m::mock(PresenterFactory::class);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     /**
      * 
      * @return ApiResponse

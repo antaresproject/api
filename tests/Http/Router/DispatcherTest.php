@@ -54,12 +54,6 @@ class DispatcherTest extends TestCase
         $this->response  = m::mock(Response::class);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     /**
      * 
      * @return Dispatcher

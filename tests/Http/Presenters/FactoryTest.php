@@ -45,12 +45,6 @@ class FactoryTest extends TestCase
         $this->factory = new Factory($this->app, $config);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     protected function getDatatablesMock()
     {
 
@@ -60,22 +54,6 @@ class FactoryTest extends TestCase
     protected function getFormMock()
     {
         return m::mock(\Antares\Html\Form\FormBuilder::class);
-    }
-
-    public function testGetAdapterForClass()
-    {
-        $reflectionClass = new ReflectionClass(Factory::class);
-        $method          = $reflectionClass->getMethod('getAdapterForClass');
-        $method->setAccessible(true);
-
-        $datatables = $this->getDatatablesMock();
-        $form       = $this->getFormMock();
-
-        $adapter = $method->invoke($this->factory, $datatables);
-        $this->assertEquals(\Antares\Modules\Api\Adapters\DatatablesAdapter::class, $adapter);
-
-        $adapter = $method->invoke($this->factory, $form);
-        $this->assertEquals(\Antares\Modules\Api\Adapters\FormAdapter::class, $adapter);
     }
 
     public function testCreateAdapter()
@@ -184,26 +162,9 @@ class FactoryTest extends TestCase
                 ->andReturn($formRaw)
                 ->getMock();
 
-        $input = ['variable' => $form];
-
-        $expectedData = [
-            'form' => [
-                'name'      => 'form name',
-                'rules'     => [
-                    'name' => ['required'],
-                ],
-                'fieldsets' => [
-                    [
-                        'name'     => 'Fieldset Name',
-                        'controls' => [$control],
-                    ]
-                ],
-            ],
-        ];
-
+        $input         = ['variable' => $form];
         $preparedInput = $this->factory->getPreparedData($input);
-
-        $this->assertEquals($expectedData, $preparedInput);
+        $this->assertEquals($input, $preparedInput);
     }
 
 }

@@ -51,12 +51,6 @@ class ValidationErrorTest extends TestCase
         ]);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     public function testInstance()
     {
         $message = new ValidationError($this->errorBag->getMock());

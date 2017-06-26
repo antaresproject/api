@@ -53,12 +53,6 @@ class MessageTest extends TestCase
         ]);
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-        m::close();
-    }
-
     public function testInstance()
     {
         $message = new Message($this->messageBag->getMock());
