@@ -109,7 +109,8 @@ class Adapter
 
         $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($namespace, $route) {
             $targetAction = $this->getRouteTargetAction($route);
-            $uri          = !in_array($this->version, config('api.available_versions')) ? $route->uri() : ($this->version . '/' . $route->uri());
+
+            $uri = !in_array($this->version, config('api.available_versions')) ? $route->uri() : ($this->version . '/' . $route->uri());
             $api->addRoute($route->methods(), $uri, $targetAction);
         });
     }
