@@ -107,10 +107,10 @@ class Adapter
         $attributes = array_merge(compact('middleware', 'namespace'), config('api.throttling', []));
 
 
-        $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($route) {
+        $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($namespace, $route) {
             $targetAction = $this->getRouteTargetAction($route);
-            $uri          = !in_array($this->version, config('api.available_versions')) ? $route->getUri() : ($this->version . '/' . $route->getUri());
-            $api->addRoute($route->getMethods(), $uri, $targetAction);
+            $uri          = !in_array($this->version, config('api.available_versions')) ? $route->uri() : ($this->version . '/' . $route->uri());
+            $api->addRoute($route->methods(), $uri, $targetAction);
         });
     }
 
