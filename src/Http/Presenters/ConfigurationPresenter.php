@@ -79,6 +79,7 @@ class ConfigurationPresenter
                             foreach ($areas as $name => $title) {
                                 $control = $fieldset->control('input:checkbox', "drivers[$driver][$name]")
                                         ->label($title . ' area')
+                                        ->labelClass('flex ff-rnw')
                                         ->value(1);
                                 if ($authProviderService->isDriverEnabledForArea($driver, $name)) {
                                     $control->checked();
@@ -127,6 +128,7 @@ class ConfigurationPresenter
 
         $fieldset->control('input:checkbox', '')
                 ->label('<p><b>' . $availableAuthDriver->getLabel() . '</b> - &nbsp;' . $availableAuthDriver->getDescription() . '</p>')
+                ->labelClass('flex ff-rnw')
                 ->value($availableAuthDriver->getName())
                 ->attributes($attributes);
     }

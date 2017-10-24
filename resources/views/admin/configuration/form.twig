@@ -7,19 +7,20 @@
 {% endfor %}
 
 {% if fieldsets[0].name|length>0 %}
-    <h1>{{ fieldsets[0].name }}</h1>
+    <fieldset>
+        <legend>{{ fieldsets[0].name }}</legend>
+    </fieldset>
 {% endif %}
-<div class="separator"></div>
 {% for fieldset in fieldsets %}
     <fieldset>
         {% if fieldset.hasLayout() %}
             {{ fieldset.render()|raw }}
         {% else %}    
             {% for control in fieldset.controls() %}                
-                <div class="col-group">
-                    <div class="form-block">
-                        <div class="col-dt-14 col-14 col-mb-14">
-                            <label for="{{ control.attributes.attributes.id }}" class="form-block__name">
+                <div class="form-block">
+                    <div class="col-group">
+                        <div class="col-mb-24">
+                            <label for="{{ control.attributes.attributes.id }}" class="form-block__name {{ control.has('labelClass') ? control.labelClass : '' }}">
                                 {{ control.getField(row, control, [])|raw }} {{  control.label|raw }}
                             </label>
                         </div>

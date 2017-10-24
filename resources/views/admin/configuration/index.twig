@@ -1,8 +1,7 @@
 {% extends "antares/foundation::layouts.antares.index" %}
-{% block content %}
-    <div class="col-group">
-        <div class="col-16">
-            {{ form|raw }}
-        </div>
-    </div>
-{% endblock %}
+{% block app_content %}    
+    <div class="app-content">
+    {% endblock %} 
+    {% block content %}
+        {{ form|raw }}
+    {% endblock %}
