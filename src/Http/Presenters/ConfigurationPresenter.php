@@ -89,17 +89,16 @@ class ConfigurationPresenter
                     }
 
                     $form->fieldset(null, function(Fieldset $fieldset) {
-                        $buttonAttrs = [
-                            'type'  => 'submit',
-                            'class' => 'btn btn-primary',
-                        ];
+                        $fieldset->control('button', 'button')
+                                ->attributes([
+                                    'type'  => 'submit',
+                                    'class' => 'btn btn-primary',
+                                ])
+                                ->value(trans('antares/foundation::label.save_changes'));
                         $fieldset->control('button', 'cancel')
                                 ->field(function() {
                                     return app('html')->link(handles("antares::/"), trans('antares/foundation::label.cancel'), ['class' => 'btn btn--md btn--default mdl-button mdl-js-button']);
                                 });
-                        $fieldset->control('button', 'button')
-                                ->attributes($buttonAttrs)
-                                ->value(trans('antares/foundation::label.save_changes'));
                     });
                 });
     }
