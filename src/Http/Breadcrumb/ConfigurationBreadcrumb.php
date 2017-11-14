@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Api
- * @version    0.9.0
+ * @version    0.9.2
  * @author     Antares Team
  * @license    BSD License (3-clause)
  * @copyright  (c) 2017, Antares
@@ -36,8 +36,16 @@ class ConfigurationBreadcrumb extends Navigation
      */
     public function onIndex()
     {
-        $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
+
+        active_menu_route('settings/index');
+
+        $this->breadcrumbs->register('general-config', function($breadcrumbs) {
             $breadcrumbs->push('General Configuration');
+        });
+
+        $this->breadcrumbs->register(self::$name, function($breadcrumbs) {
+            $breadcrumbs->parent('general-config');
+            $breadcrumbs->push('Api');
         });
 
         $this->shareOnView(self::$name);
