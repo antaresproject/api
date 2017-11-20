@@ -102,9 +102,15 @@ class Adapter
      */
     public function adaptRoute(Route $route, $namespace = null)
     {
+        $middleware = array_get($route->getAction(), 'middleware', []);
 
-        $middleware = array_merge(['api.throttle', 'api.auth',], array_get($route->getAction(), 'middleware', []));
+        if (is_null($middleware)) {
+            $middleware = [];
+        }
+        $middleware = array_merge(['api.throttle', 'api.auth',], $middleware);
         $attributes = array_merge(compact('middleware', 'namespace'), config('api.throttling', []));
+
+
 
 
         $this->apiRouter->version(config('api.available_versions'), $attributes, function(ApiRouter $api) use($namespace, $route) {
