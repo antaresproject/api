@@ -1,9 +1,8 @@
 {% for control in controls %}
     <div class="col-group">        
-        <div class="col-2"></div>        
-        <div class="col-15 form-block">
+        <div class="col-mb-offset-2 col-mb-22">
             {% include 'antares/foundation::layouts.antares.partials.form.vertical._'~control.type|replace({':': '_'}) with {control: control} %}
-        </div>
+        </div>        
     </div>
 {%endfor %}
 
