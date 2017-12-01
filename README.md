@@ -1,6 +1,6 @@
 # Antares API Module
 
-[![Laravel 5.4](https://img.shields.io/badge/Laravel-5.4-orange.svg)](http://laravel.com)
+[![Laravel 5.5](https://img.shields.io/badge/Laravel-5.5-orange.svg)](http://laravel.com)
 [![Coverage Status](https://coveralls.io/repos/github/antaresproject/api/badge.svg?branch=0.9.2)](https://coveralls.io/github/antaresproject/api?branch=0.9.2)
 [![Build Status](https://travis-ci.org/antaresproject/api.svg?branch=0.9.2)](https://travis-ci.org/antaresproject/api)
 [![Code Climate](https://codeclimate.com/github/antaresproject/api/badges/gpa.svg)](https://codeclimate.com/github/antaresproject/api)
