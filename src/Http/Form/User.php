@@ -41,7 +41,6 @@ class User extends Grid
             $fieldset->legend(trans('antares/api::labels.api_configuration'));
             $control = $fieldset->control('switch', 'api')
                     ->label('Api')
-                    ->wrapper(['class' => 'w200'])
                     ->attributes(['class' => 'switch-api']);
 
             if ($model->enabled) {

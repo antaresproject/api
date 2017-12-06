@@ -51,7 +51,7 @@ class Basic implements AuthProviderPresenterContract
     public function fieldset(Fieldset $fieldset, User $user)
     {
         $fieldset->legend($this->provider->getLegend());
-        return $fieldset->control('placeholder', 'custom_field')
+        return $fieldset->control('raw', 'custom_field')
                         ->field(function() {
                             return view('antares/api::admin.partials._basic_auth', ['documentation' => $this->provider->getDocumentationLink(), 'description' => $this->provider->getDescription()]);
                         });

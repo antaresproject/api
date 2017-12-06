@@ -85,7 +85,6 @@ class UserConfig
                     continue;
                 }
                 $form->findFieldsetOrCreateNew($name, function(Fieldset $fieldset) use($driver, $api) {
-
                     $presenter = $driver->getPresenter();
                     if ($presenter) {
                         $presenter->fieldset($fieldset, $api->user);

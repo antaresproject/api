@@ -61,9 +61,9 @@ class PublicPrivate implements AuthProviderPresenterContract
     public function fieldset(Fieldset $fieldset, User $user)
     {
         $fieldset->legend($this->provider->getLegend());
-        $fieldset->control('placeholder', '')
+        $fieldset->control('raw', '')
                 ->field(function() {
-                    return '<p>' . $this->provider->getDescription() . '</p>';
+                    return view('antares/api::admin.partials._public_private_auth', ['description' => $this->provider->getDescription()]);
                 });
         $fieldset->control('input:text', 'public_key')
                 ->value($this->auth->publicKey($user))
@@ -71,7 +71,7 @@ class PublicPrivate implements AuthProviderPresenterContract
                 ->attributes([
                     'readonly' => 'readonly'
                 ])
-                ->wrapper(['class' => 'w50p'])
+                ->wrapper(['class' => 'col-mb-16 col-18 col-dt-12 col-ld-12'])
                 ->help($this->provider->getPublicKeyDescription())
                 ->help($this->provider->getResetLink());
 
@@ -82,7 +82,7 @@ class PublicPrivate implements AuthProviderPresenterContract
                 ->attributes([
                     'readonly' => 'readonly'
                 ])
-                ->wrapper(['class' => 'w50p'])
+                ->wrapper(['class' => 'col-mb-16 col-18 col-dt-12 col-ld-12'])
                 ->inlineHelp($this->provider->getPrivateKeyDescription());
     }
 

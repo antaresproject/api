@@ -1,17 +1,15 @@
-<div class="form-block">
-    <div class="col-24 mb2 nopadding">
-        <label for="token" class="form-block__name"></label>    
+<div class="col-group">
+    <div class="col-mb-8 col-6 col-dt-4 col-ld-3">
+
     </div>
-    <div class="col-24 nopadding">
-        <div class="input-field ">
+    <div class="col-mb-16 col-18 col-dt-12 col-ld-12">
+        <div class="input-field input-field__desc">
             <p>{{ description|raw }}</p>
         </div>
-    </div>
-    {% if documentation %}
-        <div class="col-24 nopadding">
+        {% if documentation %}
             <div class="input-field__desc">
                 {{ documentation|raw }}
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
+    </div>
 </div>

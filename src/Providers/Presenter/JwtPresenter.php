@@ -57,9 +57,9 @@ class JwtPresenter implements AuthProviderPresenterContract
     {
         $token = $this->jwtAuth->fromUser($user);
         $fieldset->legend($this->jwtProvider->getLegend());
-        $fieldset->control('placeholder', '')
+        $fieldset->control('raw', '')
                 ->field(function() {
-                    return '<p>' . $this->jwtProvider->getDescription() . '</p>';
+                    return view('antares/api::admin.partials._jwt_auth', ['description' => $this->jwtProvider->getDescription()]);
                 });
         $links         = [$this->jwtProvider->getResetLink()];
         if (strlen($documentation = $this->jwtProvider->getDocumentationLink()) > 0) {
@@ -72,7 +72,7 @@ class JwtPresenter implements AuthProviderPresenterContract
                     'rows'     => 4,
                     'readonly' => 'readonly',
                 ])
-                ->wrapper(['class' => 'w300p'])
+                ->wrapper(['class' => 'col-mb-16 col-18 col-dt-12 col-ld-12'])
                 ->inlineHelp($this->jwtProvider->getJWTKeyDescription())
                 ->help(implode(',  ', $links));
     }
