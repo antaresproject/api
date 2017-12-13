@@ -65,13 +65,15 @@ class Factory
     public function getPreparedData($input)
     {
         $data = ($input instanceof View) ? $input->getData() : $input;
-
         if (is_array($data)) {
-            foreach ($data as $variable) {
+            $return = [];
+            foreach ($data as $key => $variable) {
                 if ($transformed = $this->getTransformedVariable($variable)) {
-                    return $transformed;
+                    $variable = $transformed;
                 }
+                array_set($return, $key, $variable);
             }
+            return $return;
         } else if ($transformed = $this->getTransformedVariable($data)) {
             return $transformed;
         }
@@ -87,6 +89,7 @@ class Factory
     protected function getTransformedVariable($variable)
     {
         $adapter = $this->getAdapterForClass($variable);
+
 
         if ($adapter) {
             return $this->createAdapter($adapter)->transform($variable);

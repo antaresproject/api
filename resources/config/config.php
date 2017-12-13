@@ -27,12 +27,16 @@ return [
     ],
     'adapters'                 => [
         'datatables' => \Antares\Modules\Api\Adapters\DatatablesAdapter::class,
+        'datatable'  => \Antares\Modules\Api\Adapters\DatatablesConfigAdapter::class,
         'form'       => \Antares\Modules\Api\Adapters\FormAdapter::class,
+        'widgets'    => \Antares\Modules\Api\Adapters\WidgetAdapter::class,
     ],
     'maps'                     => [
-        \Antares\Datatables\Html\Builder::class => 'datatables',
-        \Antares\Datatables\Factory::class      => 'datatables',
-        \Antares\Html\Form\FormBuilder::class   => 'form',
+        \Antares\Datatables\Html\Builder::class                  => 'datatables',
+        \Antares\Datatables\Factory::class                       => 'datatables',
+        \Antares\Datatables\Services\DataTable::class            => 'datatable',
+        \Antares\Html\Form\FormBuilder::class                    => 'form',
+        \Antares\UI\UIComponents\Adapter\AbstractTemplate::class => 'widgets',
     ],
     'auth'                     => [
         'drivers' => [

@@ -62,7 +62,6 @@ class Response
         if ($response instanceof RedirectResponse) {
             return $this->handleRedirectResponse($response);
         }
-
         return $this->presenterFactory->getPreparedData($response);
     }
 
