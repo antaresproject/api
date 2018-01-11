@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Api
- * @version    0.9.0
+ * @version    0.9.2
  * @author     Antares Team
  * @license    BSD License (3-clause)
  * @copyright  (c) 2017, Antares
@@ -21,8 +21,8 @@
 namespace Antares\Modules\Api\Http\Router;
 
 use Illuminate\Contracts\Container\Container;
-use Illuminate\Routing\Route;
 use Antares\Modules\Api\Http\Response;
+use Illuminate\Routing\Route;
 
 class Dispatcher
 {
@@ -60,7 +60,6 @@ class Dispatcher
         if ($controller) {
             $parameters = $route->parameters();
             $response   = $this->app->call($controller, $parameters);
-
             return $this->response->handle($response);
         }
     }

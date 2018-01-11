@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Api
- * @version    0.9.0
+ * @version    0.9.2
  * @author     Antares Team
  * @license    BSD License (3-clause)
  * @copyright  (c) 2017, Antares
@@ -24,7 +24,7 @@ use Antares\Modules\Api\Adapter;
 use Antares\Html\Form\FormBuilder;
 use Antares\Html\Form\Fieldset;
 
-class FormAdapter extends Adapter
+class WidgetAdapter extends Adapter
 {
 
     /**
@@ -57,19 +57,18 @@ class FormAdapter extends Adapter
      * @param FormBuilder $data
      * @return array
      */
-    public function transform($data)
+    public function transform($widget)
     {
-        if ($data instanceof FormBuilder) {
-            $response = $data->getRawResponse();
-
-            foreach ($response['fieldsets'] as $fieldset) {
-                $this->transformFieldset($fieldset);
-            }
-
+        if ($widget instanceof \Antares\UI\UIComponents\Adapter\AbstractTemplate) {
+            $viewData = null;
+            $view     = $widget->getView();
+            app('view')->composer($view, function($view) use(&$viewData) {
+                $viewData = $view->getData();
+            });
+            $attributes = array_except($widget->fill(), ['content']);
             return [
-                'name'      => array_get($response, 'name'),
-                'rules'     => array_get($response, 'rules', []),
-                'fieldsets' => $this->fieldsets,
+                'attributes' => $attributes,
+                'data'       => $viewData
             ];
         }
 

@@ -91,6 +91,7 @@ class ApiMiddleware
 
             $route = $request->route();
             $data  = $this->dispatcher->handle($route);
+
             return $this->returnResponse($request, $data);
         }
 
