@@ -22,6 +22,7 @@ namespace Antares\Modules\Api\Tests\Http\Router;
 
 use Mockery as m;
 use Dingo\Api\Provider\LaravelServiceProvider;
+use Dingo\Api\Provider\DingoServiceProvider;
 use Antares\Modules\Api\Http\Router\Adapter;
 use Antares\Testing\TestCase;
 use Dingo\Api\Routing\Router as ApiRouter;
@@ -61,7 +62,13 @@ class AdapterTest extends TestCase
         $this->addProvider(\Antares\Area\AreaServiceProvider::class);
         $this->addProvider(LaravelServiceProvider::class);
 
+
+
         parent::setUp();
+        $serviceProvider = new LaravelServiceProvider($this->app);
+        $serviceProvider->register();
+
+
 
         $this->apiRouter        = $this->app->make(ApiRouter::class);
         $this->controllerFinder = m::mock(ControllerFinder::class)
